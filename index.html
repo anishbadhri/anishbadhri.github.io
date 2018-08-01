@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"> 
 <head>
-    <title>AnishBadri</title>
+    <title>Anish Badri</title>
     
     <!-- Meta -->
     <meta charset="utf-8">
@@ -14,6 +14,8 @@
     
     <!-- FontAwesome JS-->
     <script defer src="https://use.fontawesome.com/releases/v5.1.1/js/all.js" integrity="sha384-BtvRZcyfv4r0x/phJt9Y9HhnN5ur1Z+kZbKVgzVBAlQZX4jvAuImlIz+bG7TS00a" crossorigin="anonymous"></script>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
        
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="pillar-1.css">
@@ -22,7 +24,22 @@
 </head> 
 
 <body>	
-
+	<div class="text-center">
+    	<a href="#Work-Experience"><span class="badge badge-primary badge-pill">Experience</span></a>&nbsp;<a href="#Certifications"><span class="badge badge-primary badge-pill">MOOCs</span></a>&nbsp;<a href="#Projects"><span class="badge badge-primary badge-pill">Projects</span></a>&nbsp;<a href="#Skills"><span class="badge badge-primary badge-pill">Skills</span></a>&nbsp;<a href="#Education"><span class="badge badge-primary badge-pill">Education</span></a>&nbsp;<a href="#Achievements"><span class="badge badge-primary badge-pill">Achievements</span></a>&nbsp;<a href="#Language"><span class="badge badge-primary badge-pill">Language</span></a>&nbsp;<a href="#Organizations"><span class="badge badge-primary badge-pill">Organizations</span></a>&nbsp;<a href="#Interests"><span class="badge badge-primary badge-pill">Interests</span></a>
+    	<script type="text/javascript">
+    		$("a").on('click', function(event) {
+		    if (this.hash !== "") {
+		      event.preventDefault();
+		      var hash = this.hash;
+		      $('html, body').animate({
+		        scrollTop: $(hash).offset().top
+		      }, 800, function(){
+		        window.location.hash = hash;
+		      });
+		    }
+		  });
+    	</script>
+	</div>
     <article class="resume-wrapper text-center position-relative">
 	    <div class="resume-wrapper-inner mx-auto text-left bg-white shadow-lg">
 		    <header class="resume-header pt-4 pt-md-0">
@@ -31,10 +48,10 @@
 				    <div class="media-body p-4 d-flex flex-column flex-md-row mx-auto mx-lg-0">
 					    <div class="primary-info">
 						    <h1 class="name mt-0 mb-1 text-white text-uppercase text-uppercase">Anish Badri R S</h1>
-						    <div class="title mb-2">CS Enthusiast</div>
+						    <div class="title mb-1">CS Enthusiast</div>
 						    <ul class="list-unstyled">
-							    <li class="mb-2"><a href="mailto:anishbadhri@gmail.com"><i class="far fa-envelope fa-fw mr-2" data-fa-transform="grow-3"></i>anishbadhri@gmail.com</a></li>
-							    <li class="mb-2"><a href="tel:+919445453582"><i class="fas fa-mobile-alt fa-fw mr-2" data-fa-transform="grow-6"></i>+91 9445453582</a></li>
+							    <li class="mb-1"><a href="mailto:anishbadhri@gmail.com"><i class="far fa-envelope fa-fw mr-2" data-fa-transform="grow-3"></i>anishbadhri@gmail.com</a></li>
+							    <li class="mb-1"><a href="tel:+919445453582"><i class="fas fa-mobile-alt fa-fw mr-2" data-fa-transform="grow-6"></i>+91 9445453582</a></li>
 							    <li><a href="https://anishbadhri.github.io/Resume.pdf" target="_blank"><i class="fas fa-file-alt fa-fw mr-2" data-fa-transform="grow-6"></i>View PDF Resume</a></li>
 						    </ul>
 					    </div><!--//primary-info-->
@@ -59,7 +76,7 @@
 			    </section> -->
 			    <div class="row">
 				    <div class="col-lg-9">
-					    <section class="resume-section experience-section mb-5">
+					    <section class="resume-section experience-section mb-5" id="Work-Experience">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Work Experience</h2>
 						    <div class="resume-section-content">
 							    <div class="resume-timeline position-relative">
@@ -113,7 +130,7 @@
 							    </div><!--//resume-timeline-->
 						    </div>
 					    </section><!--//experience-section-->
-					    <section class="resume-section experience-section mb-5">
+					    <section class="resume-section experience-section mb-5" id="Certifications">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Certifications</h2>
 						    <div class="resume-section-content">
 							    <div class="resume-timeline position-relative">
@@ -200,7 +217,7 @@
 							    </div><!--//resume-timeline-->
 						    </div>
 					    </section><!--//experience-section-->
-					    <section class="resume-section experience-section mb-5">
+					    <section class="resume-section experience-section mb-5" id="Projects">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Projects</h2>
 						    <div class="resume-section-content">
 							    <div class="resume-timeline position-relative">
@@ -252,7 +269,7 @@
 					    </section><!--//experience-section-->
 				    </div>
 				    <div class="col-lg-3">
-					    <section class="resume-section skills-section mb-5">
+					    <section class="resume-section skills-section mb-5" id="Skills">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Skills &amp; Tools</h2>
 						    <div class="resume-section-content">
 						        <div class="resume-skill-item">
@@ -320,7 +337,7 @@
 						        </div><!--//resume-skill-item-->
 						    </div><!--resume-section-content-->
 					    </section><!--//skills-section-->
-					    <section class="resume-section education-section mb-5">
+					    <section class="resume-section education-section mb-5" id="Education">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Education</h2>
 						    <div class="resume-section-content">
 							    <ul class="list-unstyled">
@@ -358,7 +375,7 @@
 							    </ul>
 						    </div>
 					    </section><!--//education-section-->
-					    <section class="resume-section reference-section mb-5">
+					    <section class="resume-section reference-section mb-5" id="Achievements">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Achievements</h2>
 						    <div class="resume-section-content">
 							    <ul class="list-unstyled resume-awards-list">
@@ -400,7 +417,7 @@
 							    </ul>
 						    </div>
 					    </section><!--//interests-section-->
-					    <section class="resume-section language-section mb-5">
+					    <section class="resume-section language-section mb-5" id="Language">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Language</h2>
 						    <div class="resume-section-content">
 							    <ul class="list-unstyled resume-lang-list">
@@ -409,7 +426,7 @@
 							    </ul>
 						    </div>
 					    </section><!--//language-section-->
-					    <section class="resume-section interests-section mb-5">
+					    <section class="resume-section interests-section mb-5" id="Organizations">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Organizations</h2>
 						    <div class="resume-section-content">
 							    <ul class="list-unstyled">
@@ -418,7 +435,7 @@
 							    </ul>
 						    </div>
 					    </section><!--//interests-section-->
-					    <section class="resume-section interests-section mb-5">
+					    <section class="resume-section interests-section mb-5" id="Interests">
 						    <h2 class="resume-section-title text-uppercase font-weight-bold pb-3 mb-3">Interests</h2>
 						    <div class="resume-section-content">
 							    <ul class="list-unstyled">
