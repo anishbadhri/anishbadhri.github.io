@@ -93,30 +93,53 @@
 /* --- Experience ----------------------------------------------------------- */
 .exp {
   display: grid;
-  gap: 2.5rem;
+  gap: 2.75rem; /* between companies */
 }
-.exp__item {
+.exp__company {
   display: grid;
-  gap: 0.4rem 2rem;
-  grid-template-columns: 1fr;
+  gap: 1.1rem;
 }
-@media (min-width: 48rem) {
-  .exp__item {
-    grid-template-columns: 12rem 1fr;
-  }
+.exp__company-name {
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
 }
+/* Roles of one company are grouped under a subtle rail. A single-role company
+   simply has one role here — same structure, no special casing. */
+.exp__roles {
+  display: grid;
+  gap: 1.75rem; /* between roles within a company */
+  border-inline-start: 2px solid var(--borderColor-default);
+  padding-inline-start: clamp(1rem, 3vw, 1.75rem);
+}
+.exp__role-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 2rem;
+}
+/* Intrinsic "sidebar": the date column sits beside the body when there's room
+   and wraps above it when there isn't — no width breakpoint needed. */
 .exp__meta {
+  flex: 1 1 9rem;
   font-family: var(--fontStack-monospace);
   font-size: 0.8125rem;
   color: var(--fgColor-muted);
   padding-block-start: 0.3rem;
 }
+.exp__body {
+  flex: 999 1 0;
+  min-inline-size: min(100%, 20rem);
+}
 .exp__role {
+  font-family: var(--fontStack-sansSerifDisplay);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.3;
   margin-block-end: 0.15rem;
 }
 .exp__org {
   color: var(--fgColor-muted);
-  margin-block-end: 0.9rem;
+  margin-block-end: 0.5rem;
 }
 .exp__org .org-name {
   color: var(--fgColor-default);
@@ -153,22 +176,12 @@
   gap: 0.4rem;
   margin-block-start: 0.5rem;
 }
-.exp__note {
-  margin-block-start: 0.75rem;
-  font-size: 0.85rem;
-  color: var(--fgColor-muted);
-}
 
 /* --- Projects ------------------------------------------------------------- */
 .projects {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 44rem) {
-  .projects {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
 }
 .project {
   display: flex;
@@ -215,12 +228,7 @@
 .skills {
   display: grid;
   gap: 1.75rem;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 40rem) {
-  .skills {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
 }
 .skills__group-title {
   font-family: var(--fontStack-monospace);
@@ -240,12 +248,7 @@
 .edu {
   display: grid;
   gap: 2rem;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 48rem) {
-  .edu {
-    grid-template-columns: 1.1fr 1fr;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
 }
 .edu__degree {
   margin-block: 0.3rem;
@@ -278,13 +281,8 @@
 /* --- Highlights ----------------------------------------------------------- */
 .highlights {
   display: grid;
-  gap: 0.7rem;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 44rem) {
-  .highlights {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  gap: 0.7rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
 }
 .highlights li {
   position: relative;

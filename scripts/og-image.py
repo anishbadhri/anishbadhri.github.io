@@ -11,9 +11,16 @@ src/assets/profile.jpg and set USE_PHOTO = True below.
 """
 from PIL import Image, ImageDraw, ImageFont
 
-USE_PHOTO = False
+USE_PHOTO = True
 PHOTO_PATH = "src/assets/profile.jpg"
 OUT = "src/assets/og-image.png"
+
+# Avatar crop tuning (fractions of the source image). The avatar is a circle, so
+# this crops a square centred on the face of a standing portrait. Nudge
+# FACE_Y_FRAC up if the crop cuts off the forehead, down if it sits too low.
+CROP_FRAC = 0.40     # square side as a fraction of the shorter image edge
+FACE_X_FRAC = 0.50   # horizontal centre of the crop
+FACE_Y_FRAC = 0.28   # vertical centre of the crop (≈ where the face sits)
 
 W, H = 1200, 630
 BG = (13, 17, 23)        # Primer dark canvas
@@ -33,11 +40,11 @@ d.rectangle([0, 0, 10, H], fill=ACC)
 x = 80
 d.text((x, 92), "SENIOR SOFTWARE ENGINEER  ·  GOOGLE WORKSPACE", font=mono(22, True), fill=ACC)
 d.text((x, 150), "Anish Badri R S", font=sans(86, True), fill=FG)
-d.text((x, 270), "Identity Protocols (LDAP, SCIM)", font=sans(38), fill=FG)
+d.text((x, 270), "Identity Protocols · Data Migration", font=sans(38), fill=FG)
 d.text((x, 322), "Sunnyvale, CA", font=sans(30), fill=MUT)
 
 tx, ty, tf = x, 400, mono(24)
-for t in ["LDAP", "SCIM", "Distributed Systems", "Data Migration"]:
+for t in ["Formal Verification", "Competitive Programming"]:
     bb = d.textbbox((0, 0), t, font=tf)
     tw, th = bb[2]-bb[0], bb[3]-bb[1]
     d.rounded_rectangle([tx, ty, tx+tw+36, ty+th+24], radius=8, outline=BORDER, width=2)
@@ -49,11 +56,16 @@ d.text((x, H-92), "anishbadhri.github.io", font=mono(28, True), fill=ACC)
 # Right side: real photo (circular crop) or placeholder avatar.
 cx, cy, r = 1000, 250, 120
 if USE_PHOTO:
-    from PIL import ImageOps
-    photo = ImageOps.fit(Image.open(PHOTO_PATH).convert("RGB"), (2*r, 2*r))
-    mask = Image.new("L", (2*r, 2*r), 0)
-    ImageDraw.Draw(mask).ellipse([0, 0, 2*r, 2*r], fill=255)
-    img.paste(photo, (cx-r, cy-r), mask)
+    src = Image.open(PHOTO_PATH).convert("RGB")
+    sw, sh = src.size
+    side = int(min(sw, sh) * CROP_FRAC)
+    fcx, fcy = int(sw * FACE_X_FRAC), int(sh * FACE_Y_FRAC)
+    left = max(0, min(sw - side, fcx - side // 2))
+    top = max(0, min(sh - side, fcy - side // 2))
+    photo = src.crop((left, top, left + side, top + side)).resize((2 * r, 2 * r), Image.LANCZOS)
+    mask = Image.new("L", (2 * r, 2 * r), 0)
+    ImageDraw.Draw(mask).ellipse([0, 0, 2 * r, 2 * r], fill=255)
+    img.paste(photo, (cx - r, cy - r), mask)
     d.ellipse([cx-r-6, cy-r-6, cx+r+6, cy+r+6], outline=ACC, width=6)
 else:
     d.ellipse([cx-r-6, cy-r-6, cx+r+6, cy+r+6], outline=ACC, width=6)

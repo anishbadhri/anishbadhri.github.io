@@ -1,59 +1,95 @@
 module.exports = {
   // Short intro shown under the hero.
   summary:
-    "I build identity and data-migration systems at Google Workspace, currently as a tech lead working across identity protocols such as LDAP and SCIM. Before that I spent years on competitive programming and formal verification — compilers, model checkers and SAT solvers — and I still like problems that need both.",
+    "I'm a senior software engineer at Google Workspace, where I work on identity protocols, building on earlier work in large-scale data migration and synchronization for enterprise customers. Before Google I spent years on competitive programming and formal verification — compilers, model checkers and SAT solvers — and I still gravitate toward problems that need both.",
 
+  // Experience is grouped by company; each company holds one or more roles
+  // (focuses). A single-role job is just a company with one role, so the same
+  // shape covers internships and multi-focus positions alike — add future
+  // entries the same way. Per role: title, org (sub-org/team, optional),
+  // location, focus (optional accent label), start (YYYY-MM, for <time>),
+  // dateLabel, current (optional), highlights, stack.
   experience: [
     {
-      role: "Senior Software Engineer",
-      org: "Google",
-      team: "Google Workspace · Sunnyvale, CA",
-      focus: "Identity Protocols (LDAP, SCIM)",
-      start: "2020-08",
-      dateLabel: "Aug 2020 – Present",
-      current: true,
-      highlights: [
-        "Tech lead across multiple identity-protocol projects in Google Workspace, spanning LDAP and SCIM.",
-        "Led the end-to-end design of full-stack data-migration and identity-synchronization services for enterprise customers.",
-        "Onboarded over 100K users from sources including Microsoft, IMAP servers and Dropbox.",
-        "Drove performance optimizations across migration services, improving scalability and cutting API latency by up to 67%.",
+      company: "Google",
+      roles: [
+        {
+          title: "Senior Software Engineer",
+          org: "Google Workspace",
+          location: "Sunnyvale, CA",
+          focus: "Identity Protocols (LDAP, SCIM)",
+          start: "2025-12",
+          dateLabel: "Dec 2025 – Present",
+          current: true,
+          highlights: [
+            "Tech lead across identity-protocol projects spanning Secure LDAP and SCIM.",
+          ],
+          stack: ["Java", "TypeScript", "Cloud Spanner", "LDAP", "SCIM", "Bigtable"],
+        },
+        {
+          title: "Software Engineer III",
+          org: "Google Workspace",
+          location: "Bengaluru, India",
+          focus: "Customer Onboarding (Data Migration)",
+          start: "2020-08",
+          dateLabel: "Aug 2020 – Nov 2025",
+          highlights: [
+            "Led the end-to-end design of full-stack data-migration and identity-synchronization services for enterprise customers.",
+            "Onboarded over 100K users from sources including Microsoft, IMAP servers and Dropbox.",
+            "Drove performance optimizations across migration services, improving scalability and cutting API latency by up to 67%.",
+          ],
+          stack: ["Java", "TypeScript", "Cloud Spanner", "Message Queues", "ETL Pipelines"],
+        },
       ],
-      stack: ["Java", "TypeScript", "Cloud Spanner", "Message Queues", "ETL Pipelines"],
-      note: "Earlier work at Google was in the Customer Onboarding team (Bengaluru).",
     },
     {
-      role: "Software Engineering Intern",
-      org: "Motorq",
-      team: "Chennai, India",
-      dateLabel: "Dec 2019 – Jan 2020",
-      highlights: [
-        "Automated A/B testing comparing data returned by production code and a new implementation.",
-        "Proposed testing improvements modelled on the stable-marriage problem.",
-        "Cut the time to push code to production by 12 hours.",
+      company: "Motorq",
+      roles: [
+        {
+          title: "Software Engineering Intern",
+          location: "Chennai, India",
+          start: "2019-12",
+          dateLabel: "Dec 2019 – Jan 2020",
+          highlights: [
+            "Automated A/B testing comparing data returned by production code and a new implementation.",
+            "Proposed testing improvements modelled on the stable-marriage problem.",
+            "Cut the time to push code to production by 12 hours.",
+          ],
+          stack: ["Snowflake", "Azure Blob Storage", "Node.js", "TypeScript"],
+        },
       ],
-      stack: ["Snowflake", "Azure Blob Storage", "Node.js", "TypeScript"],
     },
     {
-      role: "Software Engineering Intern",
-      org: "Google",
-      team: "Bengaluru, India",
-      dateLabel: "May 2019 – Jul 2019",
-      highlights: [
-        "Built a bridge from index pagination to token pagination for the list-users API, making time per call independent of the number of users.",
-        "Reduced the per-call upper bound from 12s to 3s.",
+      company: "Google",
+      roles: [
+        {
+          title: "Software Engineering Intern",
+          location: "Bengaluru, India",
+          start: "2019-05",
+          dateLabel: "May 2019 – Jul 2019",
+          highlights: [
+            "Built a bridge from index pagination to token pagination for the list-users API, making time per call independent of the number of users.",
+            "Reduced the per-call upper bound from 12s to 3s.",
+          ],
+          stack: ["Java", "Cloud Spanner", "Message Queues"],
+        },
       ],
-      stack: ["Java", "Cloud Spanner", "Message Queues"],
     },
     {
-      role: "Software Development Intern",
-      org: "Freshworks",
-      team: "Chennai, India",
-      dateLabel: "May 2018 – Jul 2018",
-      highlights: [
-        "Integrated Freshdesk with third-party applications using the Freshworks SDK on Node.js.",
-        "Removed tab-switching and kept data synchronized across applications.",
+      company: "Freshworks",
+      roles: [
+        {
+          title: "Software Development Intern",
+          location: "Chennai, India",
+          start: "2018-05",
+          dateLabel: "May 2018 – Jul 2018",
+          highlights: [
+            "Integrated Freshdesk with third-party applications using the Freshworks SDK on Node.js.",
+            "Removed tab-switching and kept data synchronized across applications.",
+          ],
+          stack: ["Node.js", "SDK Development"],
+        },
       ],
-      stack: ["Node.js", "SDK Development"],
     },
   ],
 

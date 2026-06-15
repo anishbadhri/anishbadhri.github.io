@@ -4,14 +4,13 @@ module.exports = {
   role: "Senior Software Engineer",
   org: "Google Workspace",
   location: "Sunnyvale, CA",
-  focus: "Identity Protocols (LDAP, SCIM)",
 
   // Canonical origin. No trailing slash here; templates add paths.
   url: "https://anishbadhri.github.io",
 
   // ~155 chars, keyword-led, for the meta description / OG / Twitter.
   description:
-    "Anish Badri R S — Senior Software Engineer at Google Workspace, Sunnyvale. Works on identity protocols (LDAP, SCIM), distributed systems and large-scale data migration.",
+    "Anish Badri R S — Senior Software Engineer at Google Workspace, Sunnyvale. Builds large-scale data-migration and synchronization systems; background in distributed systems and formal verification.",
 
   // Public contact + profiles (phone intentionally omitted).
   email: "anishbadhri@gmail.com",
