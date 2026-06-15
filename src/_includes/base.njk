@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" data-color-mode="auto" data-light-theme="light" data-dark-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {%- set pageTitle = title or (site.name + " — " + site.role) -%}
+    {%- set pageDesc = description or site.description -%}
+    {%- set pageUrl = site.url + page.url -%}
+    {%- set ogImageUrl = site.url + site.ogImage -%}
+
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ pageDesc }}" />
+    <link rel="canonical" href="{{ pageUrl }}" />
+    <meta name="robots" content="{{ robots or 'index, follow, max-image-preview:large' }}" />
+    <meta name="author" content="{{ site.name }}" />
+
+    <!-- Theme colour follows the system light/dark preference -->
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="{{ site.name }}" />
+    <meta property="og:title" content="{{ pageTitle }}" />
+    <meta property="og:description" content="{{ pageDesc }}" />
+    <meta property="og:url" content="{{ pageUrl }}" />
+    <meta property="og:image" content="{{ ogImageUrl }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="{{ site.name }} — {{ site.role }}, {{ site.org }}" />
+    <meta property="og:locale" content="{{ site.locale }}" />
+    <meta property="profile:first_name" content="Anish Badri" />
+    <meta property="profile:last_name" content="Rengamani Srinivasan" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ pageTitle }}" />
+    <meta name="twitter:description" content="{{ pageDesc }}" />
+    <meta name="twitter:image" content="{{ ogImageUrl }}" />
+    <meta name="twitter:image:alt" content="{{ site.name }} — {{ site.role }}" />
+
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+
+    <!-- Critical CSS inlined → no render-blocking stylesheet request -->
+    <style>{{ css.inline | safe }}</style>
+
+    <!-- Structured data -->
+    {%- set jsonld = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": site.url + "/#website",
+          "url": site.url + "/",
+          "name": site.name,
+          "description": site.description,
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": site.url + "/#webpage",
+          "url": pageUrl,
+          "name": pageTitle,
+          "isPartOf": { "@id": site.url + "/#website" },
+          "about": { "@id": site.url + "/#person" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Person",
+          "@id": site.url + "/#person",
+          "name": site.name,
+          "url": site.url + "/",
+          "image": site.url + site.photo,
+          "jobTitle": site.role,
+          "worksFor": { "@type": "Organization", "name": "Google" },
+          "homeLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Sunnyvale",
+              "addressRegion": "CA",
+              "addressCountry": "US"
+            }
+          },
+          "alumniOf": { "@type": "CollegeOrUniversity", "name": resume.education.school },
+          "knowsAbout": resume.knowsAbout,
+          "email": "mailto:" + site.email,
+          "sameAs": [ site.social[0].url, site.social[1].url ]
+        }
+      ]
+    } -%}
+    <script type="application/ld+json">{{ jsonld | dump | safe }}</script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="/">anishbadhri</a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#experience">experience</a></li>
+            <li><a href="#projects">projects</a></li>
+            <li><a href="#skills">skills</a></li>
+            <li><a href="#contact">contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__inner">
+        <p>© {{ "" | year }} {{ site.name }}</p>
+        <p>Built with Eleventy &amp; Primer · no trackers</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+/* ---------------------------------------------------------------------------
+   Stylesheet entry point.
+   Imports below pull design tokens straight from the @primer/primitives npm
+   package (GitHub's Primer design system) — typography, sizing, spacing and the
+   light/dark colour themes. Nothing is copied: these are the published tokens.
+   The dark theme is imported AFTER light on purpose; Primer's `auto` colour mode
+   resolves light vs dark via prefers-color-scheme entirely in CSS (no JS).
+   --------------------------------------------------------------------------- */
+
+/* Typography tokens (font stacks, text sizes, weights, line-heights) */
+@import "@primer/primitives/dist/css/base/typography/typography.css";
+@import "@primer/primitives/dist/css/functional/typography/typography.css";
+
+/* Sizing + radius tokens */
+@import "@primer/primitives/dist/css/base/size/size.css";
+@import "@primer/primitives/dist/css/functional/size/size.css";
+@import "@primer/primitives/dist/css/functional/size/radius.css";
+
+/* Spacing scale */
+@import "@primer/primitives/dist/css/functional/spacing/space.css";
+
+/* Colour themes — light first, then dark (order matters for auto mode) */
+@import "@primer/primitives/dist/css/functional/themes/light.css";
+@import "@primer/primitives/dist/css/functional/themes/dark.css";
+
+/* Local layers (authored against the tokens above) */
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";

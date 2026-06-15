@@ -1,0 +1,150 @@
+---
+layout: base.njk
+permalink: "/"
+title: "Anish Badri R S — Senior Software Engineer | Identity Protocols"
+---
+
+<section class="hero" aria-labelledby="intro-heading">
+  <div class="container">
+    <p class="hero__eyebrow">{{ site.role }} · {{ site.org }}</p>
+    <h1 id="intro-heading">{{ site.name }}</h1>
+    <p class="hero__role">
+      {{ site.focus }} <span class="at">at {{ site.org }}</span> · {{ site.location }}
+    </p>
+    <p class="hero__summary">{{ resume.summary }}</p>
+    <div class="hero__focus">
+      <span class="tag tag--accent">LDAP</span>
+      <span class="tag tag--accent">SCIM</span>
+      <span class="tag">Distributed Systems</span>
+      <span class="tag">Data Migration</span>
+    </div>
+    <div class="actions">
+      <a class="button button--primary" href="{{ site.resume }}" download>Download résumé (PDF)</a>
+      <a class="button button--ghost" href="mailto:{{ site.email }}">Email me</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="experience" aria-labelledby="experience-heading">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">experience</p>
+      <h2 id="experience-heading">Where I've worked</h2>
+    </div>
+    <div class="exp">
+      {%- for job in resume.experience %}
+      <article class="exp__item">
+        <div class="exp__meta">
+          {%- if job.start %}<time datetime="{{ job.start }}">{{ job.dateLabel }}</time>
+          {%- else %}{{ job.dateLabel }}{% endif %}
+        </div>
+        <div class="exp__body">
+          <h3 class="exp__role">{{ job.role }}</h3>
+          <p class="exp__org"><span class="org-name">{{ job.org }}</span>{% if job.team %} · {{ job.team }}{% endif %}</p>
+          {%- if job.focus %}<p class="exp__focus">{{ job.focus }}</p>{% endif %}
+          <ul class="exp__list">
+            {%- for point in job.highlights %}<li>{{ point }}</li>{% endfor %}
+          </ul>
+          <div class="exp__stack">
+            {%- for tech in job.stack %}<span class="tag">{{ tech }}</span>{% endfor %}
+          </div>
+          {%- if job.note %}<p class="exp__note">{{ job.note }}</p>{% endif %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects" aria-labelledby="projects-heading">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">selected work</p>
+      <h2 id="projects-heading">Projects</h2>
+    </div>
+    <div class="projects">
+      {%- for p in resume.projects %}
+      <article class="project">
+        <h3 class="project__title">
+          {%- if p.url %}<a href="{{ p.url }}" rel="noopener">{{ p.name }} <span aria-hidden="true">↗</span></a>
+          {%- else %}{{ p.name }}{% endif %}
+        </h3>
+        <p class="project__desc">{{ p.desc }}</p>
+        <div class="project__tags">
+          {%- for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}
+        </div>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills" aria-labelledby="skills-heading">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">toolbox</p>
+      <h2 id="skills-heading">Skills</h2>
+    </div>
+    <div class="skills">
+      {%- for g in resume.skills %}
+      <div class="skills__group">
+        <h3 class="skills__group-title">{{ g.group }}</h3>
+        <div class="skills__items">
+          {%- for item in g.items %}<span class="tag">{{ item }}</span>{% endfor %}
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="education" aria-labelledby="education-heading">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">background</p>
+      <h2 id="education-heading">Education &amp; certifications</h2>
+    </div>
+    <div class="edu">
+      <div class="edu__school">
+        <h3>{{ resume.education.school }}</h3>
+        <p class="edu__degree">{{ resume.education.degree }}</p>
+        <p class="edu__meta">
+          {{ resume.education.affiliation }} · {{ resume.education.location }}<br />
+          {{ resume.education.dateLabel }} · GPA <span class="edu__gpa">{{ resume.education.gpa }}</span>
+        </p>
+      </div>
+      <div class="edu__certs">
+        <h3 class="skills__group-title">Certifications</h3>
+        <ul class="certs">
+          {%- for c in resume.certifications %}<li>{{ c }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="highlights" aria-labelledby="highlights-heading">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">recognition</p>
+      <h2 id="highlights-heading">Highlights</h2>
+    </div>
+    <ul class="highlights">
+      {%- for h in resume.highlights %}<li>{{ h }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">contact</p>
+      <h2 id="contact-heading">Get in touch</h2>
+    </div>
+    <p class="contact__lead">The fastest way to reach me is email. I'm also on GitHub and LinkedIn.</p>
+    <address class="contact__links">
+      <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+      {%- for s in site.social %}<a href="{{ s.url }}" rel="noopener">{{ s.label }} <span aria-hidden="true">↗</span></a>{% endfor %}
+    </address>
+  </div>
+</section>

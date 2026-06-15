@@ -1,0 +1,324 @@
+/* ===========================================================================
+   Components — hero, experience, projects, skills, education, highlights.
+   =========================================================================== */
+
+/* --- Hero ----------------------------------------------------------------- */
+.hero {
+  padding-block: clamp(3.5rem, 10vw, 6rem) var(--space-section);
+}
+.hero__eyebrow {
+  font-family: var(--fontStack-monospace);
+  font-size: 0.875rem;
+  color: var(--accent);
+  margin-block-end: 1rem;
+}
+.hero h1 {
+  margin-block-end: 1rem;
+}
+.hero__role {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  color: var(--fgColor-muted);
+  margin-block-end: 1.5rem;
+}
+.hero__role .at {
+  color: var(--fgColor-default);
+  font-weight: 600;
+}
+.hero__summary {
+  max-inline-size: 46rem;
+  font-size: 1.125rem;
+  color: var(--fgColor-default);
+}
+.hero__focus {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-start: 1.75rem;
+}
+
+/* --- Tags / chips (monospace — the developer-tooling signature) ----------- */
+.tag {
+  display: inline-block;
+  padding-block: 0.2rem;
+  padding-inline: 0.6rem;
+  font-family: var(--fontStack-monospace);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--fgColor-muted);
+  background-color: var(--bgColor-muted);
+  border: 1px solid var(--borderColor-default);
+  border-radius: var(--borderRadius-medium);
+}
+.tag--accent {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--borderColor-default));
+}
+
+/* --- Actions / buttons ---------------------------------------------------- */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-block-start: 2rem;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5ch;
+  padding-block: 0.6rem;
+  padding-inline: 1.1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--borderRadius-medium);
+  border: 1px solid transparent;
+}
+.button--primary {
+  background-color: var(--accent);
+  color: var(--accent-contrast);
+}
+.button--primary:hover {
+  background-color: color-mix(in srgb, var(--accent) 85%, black);
+}
+.button--ghost {
+  color: var(--fgColor-default);
+  border-color: var(--borderColor-default);
+  background-color: var(--bgColor-default);
+}
+.button--ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* --- Experience ----------------------------------------------------------- */
+.exp {
+  display: grid;
+  gap: 2.5rem;
+}
+.exp__item {
+  display: grid;
+  gap: 0.4rem 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 48rem) {
+  .exp__item {
+    grid-template-columns: 12rem 1fr;
+  }
+}
+.exp__meta {
+  font-family: var(--fontStack-monospace);
+  font-size: 0.8125rem;
+  color: var(--fgColor-muted);
+  padding-block-start: 0.3rem;
+}
+.exp__role {
+  margin-block-end: 0.15rem;
+}
+.exp__org {
+  color: var(--fgColor-muted);
+  margin-block-end: 0.9rem;
+}
+.exp__org .org-name {
+  color: var(--fgColor-default);
+  font-weight: 600;
+}
+.exp__focus {
+  color: var(--accent);
+  font-family: var(--fontStack-monospace);
+  font-size: 0.85rem;
+}
+.exp__list {
+  display: grid;
+  gap: 0.6rem;
+  margin-block: 0.75rem 1rem;
+}
+.exp__list li {
+  position: relative;
+  padding-inline-start: 1.25rem;
+  color: var(--fgColor-default);
+}
+.exp__list li::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0.62em;
+  inline-size: 0.45rem;
+  block-size: 0.45rem;
+  border-radius: 1px;
+  background-color: var(--accent);
+}
+.exp__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-block-start: 0.5rem;
+}
+.exp__note {
+  margin-block-start: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--fgColor-muted);
+}
+
+/* --- Projects ------------------------------------------------------------- */
+.projects {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 44rem) {
+  .projects {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  block-size: 100%;
+  padding: 1.4rem;
+  background-color: var(--bgColor-muted);
+  border: 1px solid var(--borderColor-default);
+  border-radius: var(--borderRadius-large);
+}
+.project__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.project__title {
+  font-size: 1.0625rem;
+}
+.project__title a {
+  text-decoration: none;
+}
+.project__title a:hover {
+  text-decoration: underline;
+}
+.project__link {
+  font-family: var(--fontStack-monospace);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.project__desc {
+  color: var(--fgColor-muted);
+  font-size: 0.95rem;
+  flex: 1;
+}
+.project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* --- Skills --------------------------------------------------------------- */
+.skills {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 40rem) {
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.skills__group-title {
+  font-family: var(--fontStack-monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fgColor-muted);
+  margin-block-end: 0.75rem;
+}
+.skills__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+/* --- Education + certifications ------------------------------------------- */
+.edu {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 48rem) {
+  .edu {
+    grid-template-columns: 1.1fr 1fr;
+  }
+}
+.edu__degree {
+  margin-block: 0.3rem;
+}
+.edu__meta {
+  font-family: var(--fontStack-monospace);
+  font-size: 0.8125rem;
+  color: var(--fgColor-muted);
+}
+.edu__gpa {
+  color: var(--accent);
+}
+.certs {
+  display: grid;
+  gap: 0.55rem;
+}
+.certs li {
+  position: relative;
+  padding-inline-start: 1.25rem;
+  color: var(--fgColor-default);
+  font-size: 0.95rem;
+}
+.certs li::before {
+  content: "▸";
+  position: absolute;
+  inset-inline-start: 0;
+  color: var(--accent);
+}
+
+/* --- Highlights ----------------------------------------------------------- */
+.highlights {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 44rem) {
+  .highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.highlights li {
+  position: relative;
+  padding-inline-start: 1.4rem;
+  color: var(--fgColor-default);
+}
+.highlights li::before {
+  content: "★";
+  position: absolute;
+  inset-inline-start: 0;
+  color: var(--accent);
+  font-size: 0.85em;
+  inset-block-start: 0.12em;
+}
+
+/* --- Contact -------------------------------------------------------------- */
+.contact__lead {
+  max-inline-size: 40rem;
+  margin-block-end: 1.5rem;
+  color: var(--fgColor-muted);
+}
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  font-family: var(--fontStack-monospace);
+  font-size: 0.95rem;
+}
+.contact__links a {
+  text-decoration: none;
+}
+.contact__links a:hover {
+  text-decoration: underline;
+}
+address {
+  font-style: normal;
+}
