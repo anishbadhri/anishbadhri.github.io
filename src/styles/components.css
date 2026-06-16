@@ -199,7 +199,6 @@
 .project__desc {
   color: var(--fgColor-muted);
   font-size: 0.95rem;
-  flex: 1;
 }
 .project__links {
   display: flex;
@@ -233,6 +232,9 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
+  margin-block-start: auto;
+  padding-block-start: 0.9rem;
+  border-block-start: 1px solid var(--borderColor-muted);
 }
 
 /* --- Skills --------------------------------------------------------------- */
