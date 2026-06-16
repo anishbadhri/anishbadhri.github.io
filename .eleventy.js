@@ -8,6 +8,13 @@ module.exports = function (eleventyConfig) {
   // Small helpers used by templates.
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
   eleventyConfig.addFilter("isoDate", () => new Date().toISOString().slice(0, 10));
+  eleventyConfig.addFilter("hostname", (url) => {
+    try {
+      return new URL(url).hostname.replace(/^www\./, "");
+    } catch {
+      return url;
+    }
+  });
 
   return {
     dir: {

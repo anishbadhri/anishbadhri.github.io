@@ -193,30 +193,41 @@
   border: 1px solid var(--borderColor-default);
   border-radius: var(--borderRadius-large);
 }
-.project__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-}
 .project__title {
   font-size: 1.0625rem;
-}
-.project__title a {
-  text-decoration: none;
-}
-.project__title a:hover {
-  text-decoration: underline;
-}
-.project__link {
-  font-family: var(--fontStack-monospace);
-  font-size: 0.75rem;
-  white-space: nowrap;
 }
 .project__desc {
   color: var(--fgColor-muted);
   font-size: 0.95rem;
   flex: 1;
+}
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+}
+.project__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45ch;
+  font-family: var(--fontStack-monospace);
+  font-size: 0.78rem;
+  color: var(--fgColor-muted);
+  text-decoration: none;
+}
+.project__link:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.project__link-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+.project__link-icon svg {
+  inline-size: 1em;
+  block-size: 1em;
+  fill: currentColor;
+  display: block;
 }
 .project__tags {
   display: flex;

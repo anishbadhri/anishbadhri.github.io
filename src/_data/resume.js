@@ -93,41 +93,45 @@ module.exports = {
     },
   ],
 
+  // Each project's `url` groups links by type, so a project can hold several of
+  // each: `github` entries are "owner/repo" (→ github.com/owner/repo), `arxiv`
+  // entries are article identifiers (→ arxiv.org/abs/<id>), and `other` entries
+  // are full URLs. Leave an array empty (or drop the key) when a type is unused.
   projects: [
     {
       name: "Complyer",
       tags: ["C++", "ANTLR", "Z3", "Model Checking"],
-      url: "https://github.com/AnandSaminathan/complyer",
+      url: { github: ["AnandSaminathan/complyer"], arxiv: [], other: [] },
       desc: "A compiler that verifies whether a model satisfies a given property — safety properties in propositional logic and temporal properties in LTL — using an SMT solver with k-induction, LTL bounded model checking and IC3.",
     },
     {
       name: "Complyer-SAT",
       tags: ["C++", "CMake", "Boolean SAT"],
-      url: "https://github.com/anishbadhri/complyer-sat",
+      url: { github: ["anishbadhri/complyer-sat"], arxiv: [], other: [] },
       desc: "A Boolean-satisfiability solver that decides whether a formula has a satisfying assignment. Uses Tseytin transformation to CNF and the DPLL algorithm, optimized with 2-SAT and HORNSAT.",
     },
     {
       name: "Bounded Model Checking of MFOTL Properties",
       tags: ["Model Checking"],
-      url: null,
+      url: { github: [], arxiv: [], other: [] },
       desc: "Specification and verification of infinite-state systems via Monadic First-Order sentences, whose returned bound restricts the state space and makes the verification problem decidable.",
     },
     {
       name: "Graph Database Modelling of College Data",
       tags: ["Node.js", "Neo4j", "GraphQL"],
-      url: null,
+      url: { github: [], arxiv: [], other: [] },
       desc: "A scalable graph-database schema and a back-end API server for storing and querying college data across a range of use cases.",
     },
     {
       name: "Graph Recommendation Tool",
       tags: ["Python"],
-      url: null,
+      url: { github: [], arxiv: [], other: [] },
       desc: "A command-line tool that normalizes an input graph to best fit a template graph, comparing slope — or slope and position — with a configurable error margin and learning rate.",
     },
     {
       name: "Command-Line Tools for Codeforces",
       tags: ["Python", "BeautifulSoup"],
-      url: null,
+      url: { github: [], arxiv: [], other: [] },
       desc: "CLI utilities for Codeforces: problem recommendations, sample-I/O downloads, unsolved virtual-contest listings and recently solved problems.",
     },
   ],

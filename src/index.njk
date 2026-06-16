@@ -72,11 +72,30 @@ title: "Anish Badri R S — Senior Software Engineer, Google Workspace"
     <div class="projects">
       {%- for p in resume.projects %}
       <article class="project">
-        <h3 class="project__title">
-          {%- if p.url %}<a href="{{ p.url }}" rel="noopener">{{ p.name }} <span aria-hidden="true">↗</span></a>
-          {%- else %}{{ p.name }}{% endif %}
-        </h3>
+        <h3 class="project__title">{{ p.name }}</h3>
         <p class="project__desc">{{ p.desc }}</p>
+        {%- set gh = p.url.github | default([]) %}
+        {%- set ax = p.url.arxiv | default([]) %}
+        {%- set ot = p.url.other | default([]) %}
+        {%- if (gh | length) or (ax | length) or (ot | length) %}
+        <ul class="project__links">
+          {%- for repo in gh %}
+          <li><a class="project__link" href="https://github.com/{{ repo }}" rel="noopener">
+            <span class="project__link-icon">{{ icons.github | safe }}</span><span class="visually-hidden">GitHub: </span>{{ repo }}
+          </a></li>
+          {%- endfor %}
+          {%- for id in ax %}
+          <li><a class="project__link" href="https://arxiv.org/abs/{{ id }}" rel="noopener">
+            <span class="project__link-icon">{{ icons.arxiv | safe }}</span>arXiv:{{ id }}
+          </a></li>
+          {%- endfor %}
+          {%- for link in ot %}
+          <li><a class="project__link" href="{{ link }}" rel="noopener">
+            <span class="visually-hidden">External link: </span>{{ link | hostname }} <span aria-hidden="true">↗</span>
+          </a></li>
+          {%- endfor %}
+        </ul>
+        {%- endif %}
         <div class="project__tags">
           {%- for t in p.tags %}<span class="tag">{{ t }}</span>{% endfor %}
         </div>
