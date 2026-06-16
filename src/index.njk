@@ -142,7 +142,7 @@ title: "Anish Badri R S — Senior Software Engineer, Google Workspace"
       <div class="edu__certs">
         <h3 class="skills__group-title">Certifications</h3>
         <ul class="certs">
-          {%- for c in resume.certifications %}<li>{{ c }}</li>{% endfor %}
+          {%- for c in resume.certifications %}<li>{% if c.url %}<a href="{{ c.url }}" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}</li>{% endfor %}
         </ul>
       </div>
     </div>

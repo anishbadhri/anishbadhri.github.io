@@ -101,7 +101,7 @@ module.exports = {
     {
       name: "Complyer",
       tags: ["C++", "ANTLR", "Z3", "Model Checking"],
-      url: { github: ["AnandSaminathan/complyer"], arxiv: [], other: [] },
+      url: { github: ["AnandSaminathan/complyer", "AnandSaminathan/verification-algorithms", "AnandSaminathan/formula-tree"], arxiv: [], other: [] },
       desc: "A compiler that verifies whether a model satisfies a given property — safety properties in propositional logic and temporal properties in LTL — using an SMT solver with k-induction, LTL bounded model checking and IC3.",
     },
     {
@@ -113,7 +113,7 @@ module.exports = {
     {
       name: "Bounded Model Checking of MFOTL Properties",
       tags: ["Model Checking"],
-      url: { github: [], arxiv: [], other: [] },
+      url: { github: ["anishbadhri/MFOTLProject"], arxiv: ["1812.00183"], other: [] },
       desc: "Specification and verification of infinite-state systems via Monadic First-Order sentences, whose returned bound restricts the state space and makes the verification problem decidable.",
     },
     {
@@ -125,13 +125,13 @@ module.exports = {
     {
       name: "Graph Recommendation Tool",
       tags: ["Python"],
-      url: { github: [], arxiv: [], other: [] },
+      url: { github: ["divyalakshmi054/chemical-graphs"], arxiv: [], other: [] },
       desc: "A command-line tool that normalizes an input graph to best fit a template graph, comparing slope — or slope and position — with a configurable error margin and learning rate.",
     },
     {
       name: "Command-Line Tools for Codeforces",
       tags: ["Python", "BeautifulSoup"],
-      url: { github: [], arxiv: [], other: [] },
+      url: { github: ["anishbadhri/Codeforces-MiniProjects"], arxiv: [], other: [] },
       desc: "CLI utilities for Codeforces: problem recommendations, sample-I/O downloads, unsolved virtual-contest listings and recently solved problems.",
     },
   ],
@@ -152,12 +152,14 @@ module.exports = {
     gpa: "7.77 / 10.0",
   },
 
+  // Each certification is an object so it can carry a verification link.
+  // `url` is optional — omit it and the entry renders as plain text.
   certifications: [
-    "Neo4j Certified Professional — Graph Databases",
-    "Data Structures & Algorithms (Coursera) — 98.54% average across 6 courses",
-    "Discrete Mathematics for Computer Science (Coursera) — 100% across 5 courses",
-    "Design & Analysis of Algorithms (NPTEL) — top 5% nationally",
-    "Model Checking (NPTEL)",
+    { name: "Neo4j Certified Professional — Graph Databases", url: "https://graphacademy.neo4j.com/c/9deb0487-ab11-4df1-8f2c-49a618d3531f/" },
+    { name: "Data Structures & Algorithms (Coursera) — 98.54% average across 6 courses", url: "https://www.coursera.org/account/accomplishments/specialization/ZW73SFC9HTHC" },
+    { name: "Discrete Mathematics for Computer Science (Coursera) — 100% across 5 courses", url: "https://www.coursera.org/account/accomplishments/specialization/P5NZHCRDFRR2" },
+    { name: "Design & Analysis of Algorithms (NPTEL) — top 5% nationally", url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL17CS27S1220806171019922" },
+    { name: "Model Checking (NPTEL)", url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL17CS38S1200020171011486" },
   ],
 
   highlights: [

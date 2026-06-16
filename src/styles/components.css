@@ -288,6 +288,16 @@
   inset-inline-start: 0;
   color: var(--accent);
 }
+.certs a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--fgColor-muted);
+  text-underline-offset: 0.15em;
+}
+.certs a:hover {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
 
 /* --- Highlights ----------------------------------------------------------- */
 .highlights {
