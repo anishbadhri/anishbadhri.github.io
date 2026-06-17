@@ -5,27 +5,27 @@
 
 <!-- Build & deployment health -->
 <p align="center">
-<a href="https://github.com/anishbadhri/anishbadhri.github.io/actions/workflows/deploy.yml"><img alt="Deploy workflow status" src="https://img.shields.io/github/actions/workflow/status/anishbadhri/anishbadhri.github.io/deploy.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white&label=deploy"></a>
-<a href="https://github.com/anishbadhri/anishbadhri.github.io/actions/workflows/pr-check.yml"><img alt="PR build check status" src="https://img.shields.io/github/actions/workflow/status/anishbadhri/anishbadhri.github.io/pr-check.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=PR%20build"></a>
-<a href="https://anishbadhri.github.io"><img alt="Live site status" src="https://img.shields.io/website?url=https%3A%2F%2Fanishbadhri.github.io&style=for-the-badge&label=site&up_message=live&up_color=2ea043&down_message=down"></a>
+  <a href="https://github.com/anishbadhri/anishbadhri.github.io/actions/workflows/deploy.yml"><img alt="Deploy workflow status" src="https://img.shields.io/github/actions/workflow/status/anishbadhri/anishbadhri.github.io/deploy.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white&label=deploy"></a>
+  <a href="https://github.com/anishbadhri/anishbadhri.github.io/actions/workflows/pr-check.yml"><img alt="PR build check status" src="https://img.shields.io/github/actions/workflow/status/anishbadhri/anishbadhri.github.io/pr-check.yml?style=for-the-badge&logo=githubactions&logoColor=white&label=PR%20build"></a>
+  <a href="https://anishbadhri.github.io"><img alt="Live site status" src="https://img.shields.io/website?url=https%3A%2F%2Fanishbadhri.github.io&style=for-the-badge&label=site&up_message=live&up_color=2ea043&down_message=down"></a>
 </p>
 
 <!-- Project meta -->
 <p align="center">
-<img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge">
-<img alt="Last commit" src="https://img.shields.io/github/last-commit/anishbadhri/anishbadhri.github.io?style=for-the-badge&logo=git&logoColor=white">
-<img alt="Code size" src="https://img.shields.io/github/languages/code-size/anishbadhri/anishbadhri.github.io?style=for-the-badge">
-<img alt="Dependabot enabled" src="https://img.shields.io/badge/Dependabot-enabled-025E8C?style=for-the-badge&logo=dependabot&logoColor=white">
+  <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-2ea043?style=for-the-badge">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/anishbadhri/anishbadhri.github.io?style=for-the-badge&logo=git&logoColor=white">
+  <img alt="Code size" src="https://img.shields.io/github/languages/code-size/anishbadhri/anishbadhri.github.io?style=for-the-badge">
+  <img alt="Dependabot enabled" src="https://img.shields.io/badge/Dependabot-enabled-025E8C?style=for-the-badge&logo=dependabot&logoColor=white">
 </p>
 
 <!-- Built with -->
 <p align="center">
-<img alt="Eleventy 3.1" src="https://img.shields.io/badge/Eleventy-3.1-0a0a0a?style=for-the-badge&logo=eleventy&logoColor=white">
-<img alt="Nunjucks templates" src="https://img.shields.io/badge/Nunjucks-templates-1C4913?style=for-the-badge&logo=nunjucks&logoColor=white">
-<img alt="Primer Primitives design tokens" src="https://img.shields.io/badge/Primer_Primitives-tokens-1b1f24?style=for-the-badge&logo=primer&logoColor=white">
-<img alt="Node 24.11 or newer" src="https://img.shields.io/badge/Node-%E2%89%A524.11-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white">
-<img alt="Deployed on GitHub Pages" src="https://img.shields.io/badge/GitHub_Pages-deployed-222?style=for-the-badge&logo=githubpages&logoColor=white">
-<img alt="Zero kilobytes of client JavaScript" src="https://img.shields.io/badge/client_JS-0_KB-2ea043?style=for-the-badge&logo=javascript&logoColor=white">
+  <img alt="Eleventy 3.1" src="https://img.shields.io/badge/Eleventy-3.1-0a0a0a?style=for-the-badge&logo=eleventy&logoColor=white">
+  <img alt="Nunjucks templates" src="https://img.shields.io/badge/Nunjucks-templates-1C4913?style=for-the-badge&logo=nunjucks&logoColor=white">
+  <img alt="Primer Primitives design tokens" src="https://img.shields.io/badge/Primer_Primitives-tokens-1b1f24?style=for-the-badge&logo=primer&logoColor=white">
+  <img alt="Node 24.11 or newer" src="https://img.shields.io/badge/Node-%E2%89%A524.11-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white">
+  <img alt="Deployed on GitHub Pages" src="https://img.shields.io/badge/GitHub_Pages-deployed-222?style=for-the-badge&logo=githubpages&logoColor=white">
+  <img alt="Zero kilobytes of client JavaScript" src="https://img.shields.io/badge/client_JS-0_KB-2ea043?style=for-the-badge&logo=javascript&logoColor=white">
 </p>
 
 <p align="center"><strong><a href="https://anishbadhri.github.io">▶ View the live site</a></strong></p>
