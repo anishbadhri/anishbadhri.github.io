@@ -13,11 +13,7 @@ title: "Anish Badri R S — Senior Software Engineer, Google Workspace"
     </p>
     <p class="hero__summary">{{ resume.summary }}</p>
     <div class="hero__focus">
-      <span class="tag tag--accent">Identity Protocols</span>
-      <span class="tag tag--accent">Data Migration</span>
-      <span class="tag">Distributed Systems</span>
-      <span class="tag">Formal Verification</span>
-      <span class="tag">Competitive Programming</span>
+      {%- for f in resume.focusAreas %}<span class="tag{% if f.featured %} tag--accent{% endif %}">{{ f.label }}</span>{% endfor %}
     </div>
     <div class="actions">
       <a class="button button--primary" href="{{ site.resume }}" download>Download résumé (PDF)</a>
@@ -42,6 +38,7 @@ title: "Anish Badri R S — Senior Software Engineer, Google Workspace"
             <div class="exp__meta">
               {%- if role.start %}<time datetime="{{ role.start }}">{{ role.dateLabel }}</time>
               {%- else %}{{ role.dateLabel }}{% endif %}
+              {%- if role.current %}<span class="tag tag--accent exp__now">now</span>{% endif %}
             </div>
             <div class="exp__body">
               <h4 class="exp__role">{{ role.title }}</h4>
