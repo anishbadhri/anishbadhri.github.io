@@ -3,6 +3,14 @@ module.exports = {
   summary:
     "I'm a senior software engineer at Google Workspace, where I work on identity protocols, building on earlier work in large-scale data migration and synchronization for enterprise customers. Before Google I spent years on competitive programming and formal verification — compilers, model checkers and SAT solvers — and I still gravitate toward problems that need both.",
 
+  focusAreas: [
+    { label: "Identity Protocols", featured: true },
+    { label: "Data Migration", featured: true },
+    { label: "Distributed Systems" },
+    { label: "Formal Verification" },
+    { label: "Competitive Programming" },
+  ],
+
   // Experience is grouped by company; each company holds one or more roles
   // (focuses). A single-role job is just a company with one role, so the same
   // shape covers internships and multi-focus positions alike — add future
