@@ -19,6 +19,6 @@
     "cssnano": "^8.0.0",
     "postcss": "^8.5.16",
     "postcss-import": "^16.0.0",
-    "simple-icons": "^16.24.1"
+    "simple-icons": "^16.25.0"
   }
 }
