@@ -70,19 +70,29 @@ Priorities, in order: **SEO → performance → responsiveness → accessibility
 
 ## How it works
 
-**Content → one data source.** Everything you'd edit lives in `data/` — the single
-source of truth. `site.js` holds name, role, contact, social links and SEO defaults;
-`resume.js` holds experience, projects, skills, education and highlights. `data/index.js`
-validates both against `data/schema.js` on load, so a malformed edit fails the build fast
-with a message that names the offending field. The site's `src/_data/{site,resume}.js` are
-thin re-exports of this data; `index.njk` is a thin template that loops over it — so
-updating the site is editing data, not markup.
+**Content → one rich data source.** Everything you'd edit lives in `data/` — the single
+source of truth, a **rich superset**: it holds the full CV detail (every bullet, per-role
+tech stack, project dates/locations, grouped achievements, organizations) plus the site's
+curated narrative. Each renderer selects: the **site is lean** (first 3 bullets per role,
+the compact project one-liner, a curated highlights list); the **CV is exhaustive**.
+`data/index.js` validates against `data/schema.js` on load, so a malformed edit fails the
+build fast with a message naming the offending field. `src/_data/{site,resume}.js` are thin
+re-exports; `index.njk` loops over them — so updating the site is editing data, not markup.
+
+**Machine-readable outputs → SEO.** The build also emits a JSON Resume document at
+[`/resume.json`](https://anishbadhri.github.io/resume.json) (`src/resume.11ty.js` +
+`data/jsonresume.js`) for crawlers and AI tools, and a rich **schema.org JSON-LD** Person
+graph in every page's `<head>` (`src/_data/person.js` — `hasCredential`, `award`,
+`hasOccupation`, `alumniOf`, `sameAs`, links to the résumé). JSON-LD is what search engines
+read; `resume.json` is the standard, parseable machine view.
 
 **Résumé → the same data, rendered to PDF.** The downloadable CV is a *second rendering*
-of the exact data above: `cv/generate.js` imports `data/`, emits LaTeX (`build/cv/resume.tex`,
-never published), and CI compiles it to the résumé PDF. The site and the CV can't drift —
-edit one field in `data/` and both update on the next build. The LaTeX *design* lives in
-the hand-authored `cv/preamble.tex`; only the content is generated.
+of the exact data above: `cv/generate.js` imports `data/` and emits
+[Awesome-CV](https://github.com/posquit0/Awesome-CV) LaTeX (`build/cv/resume.tex`, never
+published), and CI compiles it to the résumé PDF with **lualatex**. The site and the CV
+can't drift — edit one field in `data/` and both update on the next build. The class
+(`cv/vendor/awesome-cv.cls`) is vendored unmodified; the *design* knobs live in the
+hand-authored `cv/preamble.tex`; only the content is generated.
 
 **CSS → inlined at build.** `src/_data/css.js` runs during the build: it resolves
 `@import`s (`postcss-import`), tree-shakes Primer's unused custom properties with a small
@@ -99,21 +109,25 @@ your name, title, and a circular crop of `src/assets/profile.jpg`.
 ## Project structure
 
 ```
-data/              # single source of truth (site + CV both read this)
-  site.js          # name, role, contact, social, SEO defaults
-  resume.js        # experience, projects (typed URLs), skills, education, highlights
+data/              # single source of truth — a RICH SUPERSET (site + CV both read this)
+  site.js          # name, role, contact, social, SEO defaults, CV quote
+  resume.js        # experience, projects, skills, education, certs, achievements, organizations
   schema.js        # Zod schemas that gate both renderers
   index.js         # validates on load; exports forSite() / forCv() views
+  jsonresume.js    # maps the data → a JSON Resume doc (published at /resume.json)
 cv/                # the LaTeX renderer (content only; peer to the site)
-  generate.js      # data/ → build/cv/resume.tex
-  latex.js         # central LaTeX escaper + section/string builders
-  preamble.tex     # HAND-AUTHORED design (layout, fonts, colours)
+  generate.js      # data/ → build/cv/resume.tex (Awesome-CV macros)
+  latex.js         # central LaTeX escaper (+ raw() escape hatch) + block builders
+  preamble.tex     # HAND-AUTHORED design knobs (paper, margins, accent)
+  vendor/          # Awesome-CV class (awesome-cv.cls) + LICENCE, pinned & unmodified
 src/
   _data/
     site.js        # thin re-export of data/ (site view)
     resume.js      # thin re-export of data/ (site view)
+    person.js      # schema.org Person node (JSON-LD) built from the data — SEO
     css.js         # compiles + prunes + minifies CSS at build time
     icons.js       # extracts GitHub/arXiv SVGs from simple-icons at build time
+  resume.11ty.js   # emits /resume.json (JSON Resume) for crawlers / AI
   _includes/
     base.njk       # HTML shell: meta, Open Graph, JSON-LD, inlined CSS
   styles/
@@ -127,6 +141,7 @@ src/
 build/             # gitignored scratch — generated .tex + local PDF (never published)
 .github/
   workflows/deploy.yml     # build site + compile CV PDF + deploy to Pages on push to main
+  workflows/pr-check.yml   # build site + generate CV on every PR (validation gate)
   dependabot.yml           # weekly npm + github-actions update PRs
 scripts/og-image.py        # regenerate the Open Graph image
 .nvmrc                      # Node version (24) for local + CI
@@ -145,10 +160,11 @@ npm run cv       # generate + compile the CV PDF (needs a local TeX install)
 npm run clean    # remove ./_site and ./build
 ```
 
-`npm run cv` compiles with `latexmk`/`pdflatex`, so it needs a local TeX distribution
-(e.g. TeX Live or MiKTeX). You don't need TeX for day-to-day work — the résumé PDF is
-**not committed**; CI compiles and publishes the deployed copy. Run `npm run cv` only to
-preview the PDF locally (it lands at `src/assets/anish-badri-resume.pdf`, which is gitignored).
+`npm run cv` compiles with `latexmk`/**lualatex**, so it needs a local TeX distribution
+(TeX Live full, or MiKTeX with the Awesome-CV fonts — Source Sans 3, Roboto, FontAwesome 6).
+You don't need TeX for day-to-day work — the résumé PDF is **not committed**; CI compiles
+and publishes the deployed copy. Run `npm run cv` only to preview the PDF locally (it lands
+at `build/cv/resume.pdf`, which is gitignored). `npm run cv:tex` writes just the `.tex`.
 
 ## Editing content
 
@@ -171,9 +187,10 @@ Deploys via **GitHub Actions**, not the classic "deploy from a branch" flow.
    No secrets needed.
 
 The CI setup runs on Node 24 (pinned by `.nvmrc`). Because `data/index.js` validates on
-load, a malformed data edit fails the build before anything deploys. A pull-request build
-check (running `npm run build` + `node cv/generate.js`) is recommended so a broken build
-or LaTeX generation can't reach `main`; pair it with a branch-protection rule on that check.
+load, a malformed data edit fails the build before anything deploys. `pr-check.yml` runs
+`npm run build` + `node cv/generate.js` on every pull request, so a broken build or CV
+generation can't reach `main`; pair it with a branch-protection rule requiring the
+**build** check.
 
 ## Accessibility
 

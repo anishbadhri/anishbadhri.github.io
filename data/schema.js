@@ -30,17 +30,16 @@ const focusAreaSchema = z.strictObject({
   ...divergence,
 });
 
+// Machine-readable month (YYYY-MM); drives <time>, JSON Resume and JSON-LD.
+const isoMonth = z.string().regex(/^\d{4}-\d{2}$/, "must be YYYY-MM");
+
 const roleSchema = z.strictObject({
   title: z.string().min(1),
   org: z.string().min(1).optional(),
   location: z.string().min(1),
   focus: z.string().min(1).optional(),
-  // Machine-readable start (YYYY-MM) drives the <time> element; optional
-  // because the display label (dateLabel) is what actually renders.
-  start: z
-    .string()
-    .regex(/^\d{4}-\d{2}$/, "must be YYYY-MM")
-    .optional(),
+  start: isoMonth.optional(),
+  end: isoMonth.optional(), // omit while current
   dateLabel: z.string().min(1),
   current: z.boolean().optional(),
   highlights: z.array(z.string().min(1)).min(1),
@@ -66,9 +65,14 @@ const projectUrlSchema = z.strictObject({
 
 const projectSchema = z.strictObject({
   name: z.string().min(1),
+  start: isoMonth.optional(),
+  end: isoMonth.optional(),
+  dateLabel: z.string().min(1).optional(),
+  location: z.string().min(1).optional(),
   tags: z.array(z.string().min(1)),
   url: projectUrlSchema.optional(),
-  desc: z.string().min(1),
+  desc: z.string().min(1), // compact one-liner for the site
+  highlights: z.array(z.string().min(1)).optional(), // bullets for the CV
   ...divergence,
 });
 
@@ -83,13 +87,41 @@ const educationSchema = z.strictObject({
   affiliation: z.string().min(1),
   location: z.string().min(1),
   degree: z.string().min(1),
+  area: z.string().min(1).optional(), // JSON Resume `area`
+  studyType: z.string().min(1).optional(), // JSON Resume `studyType`
+  start: isoMonth.optional(),
+  end: isoMonth.optional(),
   dateLabel: z.string().min(1),
   gpa: z.string().min(1),
 });
 
 const certificationSchema = z.strictObject({
   name: z.string().min(1),
+  detail: z.string().min(1).optional(), // grade / coursework blurb
+  issuer: z.string().min(1).optional(),
+  year: z.string().min(1).optional(),
   url: z.url().optional(),
+  ...divergence,
+});
+
+// Grouped awards / recognition (the CV renders these; the site uses `highlights`).
+const achievementItemSchema = z.strictObject({
+  title: z.string().min(1),
+  detail: z.string().min(1).optional(),
+  issuer: z.string().min(1).optional(),
+  date: z.string().min(1), // display string; may be a range like "2016 – 20"
+  ...divergence,
+});
+
+const achievementGroupSchema = z.strictObject({
+  group: z.string().min(1),
+  items: z.array(achievementItemSchema).min(1),
+  ...divergence,
+});
+
+const organizationSchema = z.strictObject({
+  name: z.string().min(1),
+  detail: z.string().min(1),
   ...divergence,
 });
 
@@ -101,6 +133,8 @@ const resumeSchema = z.strictObject({
   skills: z.array(skillGroupSchema).min(1),
   education: educationSchema,
   certifications: z.array(certificationSchema),
+  achievements: z.array(achievementGroupSchema),
+  organizations: z.array(organizationSchema),
   highlights: z.array(z.string().min(1)),
   knowsAbout: z.array(z.string().min(1)),
 });
@@ -114,12 +148,16 @@ const socialSchema = z.strictObject({
 
 const siteSchema = z.strictObject({
   name: z.string().min(1),
+  // Optional given/family split for the CV header; site falls back to `name`.
+  firstName: z.string().min(1).optional(),
+  lastName: z.string().min(1).optional(),
   role: z.string().min(1),
   org: z.string().min(1),
   location: z.string().min(1),
   url: z.url(),
   description: z.string().min(1),
   email: z.email(),
+  quote: z.string().min(1).optional(), // CV-only epigraph
   social: z.array(socialSchema).min(1),
   // Paths (not full URLs) — templates prepend the origin where needed.
   resume: z.string().min(1),

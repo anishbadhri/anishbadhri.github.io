@@ -1,88 +1,28 @@
 %% ---------------------------------------------------------------------------
-%% CV design — HAND-AUTHORED. This file holds layout, fonts, colours and the
-%% semantic macros the generator fills. It is NOT machine-generated: cv/generate.js
-%% appends the *content* (header + sections) after \begin{document} and closes
-%% with \end{document}. Edit this file to change how the CV looks; edit data/ to
-%% change what it says.
+%% CV design — HAND-AUTHORED. This is the Awesome-CV class configuration: the
+%% design knobs (paper, margins, accent colour, section style). It is NOT
+%% machine-generated. cv/generate.js appends the personal-info commands and the
+%% section content (both derived from data/) after this file, then opens the
+%% document and closes it.
 %%
-%% Engine: pdflatex (standard Latin Modern fonts — no system-font/fontspec
-%% dependency, so it compiles anywhere TeX Live is installed). The CI compile
-%% step must stay on pdflatex to match.
+%% Class: Awesome-CV (vendored, unmodified, in cv/vendor/ — see its README).
+%% Engine: lualatex (Unicode + fontspec; loads Source Sans 3 / Roboto /
+%% FontAwesome 6 from TeX Live). The CI compile step must match — NOT pdflatex.
 %% ---------------------------------------------------------------------------
-\documentclass[11pt]{article}
+\documentclass[11pt, letterpaper]{awesome-cv}
 
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}   % lets the en/em dashes in the data pass through
-\usepackage{lmodern}
-\usepackage{microtype}
-\usepackage[letterpaper,margin=0.7in]{geometry}
-\usepackage{xcolor}
-\usepackage{titlesec}
-\usepackage{enumitem}
-\usepackage[hidelinks]{hyperref}
+% Page margins.
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
 
-%% Site identity: accent is #642ab3; a muted grey for secondary text.
-\definecolor{accent}{HTML}{642AB3}
-\definecolor{muted}{HTML}{57606A}
+% Accent colour: the site's #642ab3 (rather than an awesome-* preset).
+\definecolor{awesome}{HTML}{642AB3}
 
-\hypersetup{
-  colorlinks=true,
-  urlcolor=accent,
-  linkcolor=accent,
-  pdftitle={Anish Badri R S — CV},
-}
+% Academic icons (\aiarXiv for the arXiv project links). FontAwesome (\faGithub)
+% is already provided by the awesome-cv class via fontawesome6.
+\usepackage{academicons}
 
-\pagestyle{empty}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt}
+% Fill the section-title bar with the accent colour.
+\setbool{acvSectionColorHighlight}{true}
 
-%% Section headings: accent, bold, with a thin accent rule beneath.
-\titleformat{\section}
-  {\large\bfseries\color{accent}}{}{0em}{}[{\color{accent!35}\titlerule}]
-\titlespacing*{\section}{0pt}{11pt}{5pt}
-
-%% Tight bullet lists.
-\setlist[itemize]{leftmargin=1.2em, topsep=2pt, itemsep=1pt, parsep=0pt,
-  label=\textcolor{accent}{\textbullet}}
-
-%% ---- Semantic macros the generator calls ---------------------------------
-
-% Header block: {name}{tagline}{contact line}.
-\newcommand{\cvheader}[3]{%
-  \begin{center}
-    {\Huge\bfseries\color{accent}#1}\\[5pt]
-    {\large #2}\\[4pt]
-    {\small #3}
-  \end{center}
-  \vspace{2pt}
-}
-
-% A short lead paragraph (the summary), full width.
-\newcommand{\cvlead}[1]{{\itshape #1}\par\vspace{2pt}}
-
-% "Focus:" line of curated areas.
-\newcommand{\cvfocusareas}[1]{{\small\color{muted}\textbf{Focus:} #1}\par\vspace{2pt}}
-
-% A company grouping header within Experience.
-\newcommand{\cvcompany}[1]{\vspace{5pt}{\large\bfseries #1}\par\vspace{1pt}}
-
-% A role line: {title}{right-aligned date}.
-\newcommand{\cvrole}[2]{\vspace{2pt}{\bfseries #1}\hfill{\small\color{muted}#2}\par}
-
-% Secondary line under a role: org / location.
-\newcommand{\cvrolesub}[1]{{\small\itshape\color{muted}#1}\par}
-
-% Optional accent focus label under a role.
-\newcommand{\cvfocus}[1]{{\small\color{accent}#1}\par}
-
-% Monospace tag row (skills, stack, project tags). Ragged-right so a dense row
-% of monospace tags wraps cleanly instead of overflowing the margin.
-\newcommand{\cvtags}[1]{{\raggedright\ttfamily\small\color{muted}#1\par}\vspace{1pt}}
-
-% A titled project / education entry: {title}{right-aligned meta}.
-\newcommand{\cventry}[2]{\vspace{3pt}{\bfseries #1}\hfill{\small\color{muted}#2}\par}
-
-% A skills row: {group}{items}. Ragged-right for the same reason as \cvtags.
-\newcommand{\cvskill}[2]{{\raggedright{\bfseries #1:}\quad{\ttfamily\small #2}\par}\vspace{2pt}}
-
-\begin{document}
+% Separator between header social entries.
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}

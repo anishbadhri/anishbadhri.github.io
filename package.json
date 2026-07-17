@@ -9,7 +9,7 @@
     "serve": "eleventy --serve",
     "clean": "rm -rf _site build",
     "cv:tex": "node cv/generate.js",
-    "cv": "npm run cv:tex && latexmk -pdf -outdir=build/cv build/cv/resume.tex"
+    "cv": "npm run cv:tex && latexmk -lualatex -cd build/cv/resume.tex"
   },
   "engines": {
     "node": ">=24.11.0"

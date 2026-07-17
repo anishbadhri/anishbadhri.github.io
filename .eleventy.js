@@ -25,6 +25,7 @@ module.exports = function (eleventyConfig) {
     },
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
-    templateFormats: ["njk", "md", "html"],
+    // "11ty.js" enables the JS template that emits /resume.json (JSON Resume).
+    templateFormats: ["njk", "md", "html", "11ty.js"],
   };
 };

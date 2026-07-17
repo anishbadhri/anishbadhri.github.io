@@ -1,0 +1,40 @@
+name: PR check
+
+# Gate every pull request before it can reach main. Because data/index.js
+# validates on load, `npm run build` (the site renderer) and `node cv/generate.js`
+# (the CV renderer) both fail fast on malformed data — so this catches a bad data
+# edit, and a broken CV generator, pre-merge. It deliberately skips the LaTeX
+# compile (kept in deploy.yml) to stay fast and dependency-light.
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+# Supersede an in-progress run when the PR is updated.
+concurrency:
+  group: pr-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site (validates data on load)
+        run: npm run build
+
+      - name: Generate CV LaTeX (validates data + generator)
+        run: node cv/generate.js

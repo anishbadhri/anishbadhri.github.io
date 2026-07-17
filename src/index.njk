@@ -45,7 +45,7 @@ title: "Anish Badri R S — Senior Software Engineer, Google Workspace"
               <p class="exp__org">{% if role.org %}<span class="org-name">{{ role.org }}</span> · {% endif %}{{ role.location }}</p>
               {%- if role.focus %}<p class="exp__focus">{{ role.focus }}</p>{% endif %}
               <ul class="exp__list">
-                {%- for point in role.highlights %}<li>{{ point }}</li>{% endfor %}
+                {%- for point in role.highlights.slice(0, 3) %}<li>{{ point }}</li>{% endfor %}
               </ul>
               <div class="exp__stack">
                 {%- for tech in role.stack %}<span class="tag">{{ tech }}</span>{% endfor %}
@@ -139,7 +139,7 @@ title: "Anish Badri R S — Senior Software Engineer, Google Workspace"
       <div class="edu__certs">
         <h3 class="skills__group-title">Certifications</h3>
         <ul class="certs">
-          {%- for c in resume.certifications %}<li>{% if c.url %}<a href="{{ c.url }}" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}</li>{% endfor %}
+          {%- for c in resume.certifications %}<li>{% if c.url %}<a href="{{ c.url }}" rel="noopener">{{ c.name }}</a>{% else %}{{ c.name }}{% endif %}{% if c.detail %} — {{ c.detail }}{% endif %}</li>{% endfor %}
         </ul>
       </div>
     </div>

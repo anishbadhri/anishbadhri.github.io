@@ -12,6 +12,8 @@
     <title>{{ pageTitle }}</title>
     <meta name="description" content="{{ pageDesc }}" />
     <link rel="canonical" href="{{ pageUrl }}" />
+    <!-- Machine-readable résumé (JSON Resume) for crawlers and AI tools -->
+    <link rel="alternate" type="application/json" href="/resume.json" title="Résumé (JSON Resume)" />
     <meta name="robots" content="{{ robots or 'index, follow, max-image-preview:large' }}" />
     <meta name="author" content="{{ site.name }}" />
 
@@ -66,30 +68,7 @@
           "about": { "@id": site.url + "/#person" },
           "inLanguage": "en"
         },
-        {
-          "@type": "Person",
-          "@id": site.url + "/#person",
-          "name": site.name,
-          "givenName": "Anish Badri",
-          "familyName": "R S",
-          "url": site.url + "/",
-          "image": site.url + site.photo,
-          "jobTitle": site.role,
-          "worksFor": { "@type": "Organization", "name": "Google" },
-          "homeLocation": {
-            "@type": "Place",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Sunnyvale",
-              "addressRegion": "CA",
-              "addressCountry": "US"
-            }
-          },
-          "alumniOf": { "@type": "CollegeOrUniversity", "name": resume.education.school },
-          "knowsAbout": resume.knowsAbout,
-          "email": "mailto:" + site.email,
-          "sameAs": [ site.social[0].url, site.social[1].url ]
-        }
+        person
       ]
     } -%}
     <script type="application/ld+json">{{ jsonld | dump | safe }}</script>
