@@ -70,11 +70,19 @@ Priorities, in order: **SEO → performance → responsiveness → accessibility
 
 ## How it works
 
-**Content → data files.** Everything you'd edit lives in `src/_data/`. `site.js` holds
-name, role, contact, social links and SEO defaults; `resume.js` holds experience,
-projects, skills, education and highlights. `index.njk` is a thin template that loops
-over that data — so updating the site is editing data, not markup. (This separation is
-also what would make a future move to Astro cheap.)
+**Content → one data source.** Everything you'd edit lives in `data/` — the single
+source of truth. `site.js` holds name, role, contact, social links and SEO defaults;
+`resume.js` holds experience, projects, skills, education and highlights. `data/index.js`
+validates both against `data/schema.js` on load, so a malformed edit fails the build fast
+with a message that names the offending field. The site's `src/_data/{site,resume}.js` are
+thin re-exports of this data; `index.njk` is a thin template that loops over it — so
+updating the site is editing data, not markup.
+
+**Résumé → the same data, rendered to PDF.** The downloadable CV is a *second rendering*
+of the exact data above: `cv/generate.js` imports `data/`, emits LaTeX (`build/cv/resume.tex`,
+never published), and CI compiles it to the résumé PDF. The site and the CV can't drift —
+edit one field in `data/` and both update on the next build. The LaTeX *design* lives in
+the hand-authored `cv/preamble.tex`; only the content is generated.
 
 **CSS → inlined at build.** `src/_data/css.js` runs during the build: it resolves
 `@import`s (`postcss-import`), tree-shakes Primer's unused custom properties with a small
@@ -91,10 +99,19 @@ your name, title, and a circular crop of `src/assets/profile.jpg`.
 ## Project structure
 
 ```
+data/              # single source of truth (site + CV both read this)
+  site.js          # name, role, contact, social, SEO defaults
+  resume.js        # experience, projects (typed URLs), skills, education, highlights
+  schema.js        # Zod schemas that gate both renderers
+  index.js         # validates on load; exports forSite() / forCv() views
+cv/                # the LaTeX renderer (content only; peer to the site)
+  generate.js      # data/ → build/cv/resume.tex
+  latex.js         # central LaTeX escaper + section/string builders
+  preamble.tex     # HAND-AUTHORED design (layout, fonts, colours)
 src/
   _data/
-    site.js        # name, role, contact, social, SEO defaults
-    resume.js      # experience, projects (typed URLs), skills, education, highlights
+    site.js        # thin re-export of data/ (site view)
+    resume.js      # thin re-export of data/ (site view)
     css.js         # compiles + prunes + minifies CSS at build time
     icons.js       # extracts GitHub/arXiv SVGs from simple-icons at build time
   _includes/
@@ -104,12 +121,12 @@ src/
     base.css       # reset, accent tokens, typography, a11y primitives
     layout.css     # header, container, section rhythm, footer
     components.css # hero, experience, projects, skills, contact …
-  assets/          # favicon, og-image, résumé PDF, profile photo (copied as-is)
+  assets/          # favicon, og-image, profile photo (copied as-is; résumé PDF is generated + gitignored)
   index.njk        # the page, assembled from _data
   sitemap.njk · robots.njk · 404.njk
+build/             # gitignored scratch — generated .tex + local PDF (never published)
 .github/
-  workflows/deploy.yml     # build + deploy to GitHub Pages on push to main
-  workflows/pr-check.yml   # build-only check on every pull request
+  workflows/deploy.yml     # build site + compile CV PDF + deploy to Pages on push to main
   dependabot.yml           # weekly npm + github-actions update PRs
 scripts/og-image.py        # regenerate the Open Graph image
 .nvmrc                      # Node version (24) for local + CI
@@ -123,16 +140,24 @@ scripts/og-image.py        # regenerate the Open Graph image
 npm install      # install dependencies
 npm run serve    # dev server with live reload → http://localhost:8080
 npm run build    # production build → ./_site
-npm run clean    # remove ./_site
+npm run cv:tex   # generate the CV LaTeX → build/cv/resume.tex
+npm run cv       # generate + compile the CV PDF (needs a local TeX install)
+npm run clean    # remove ./_site and ./build
 ```
+
+`npm run cv` compiles with `latexmk`/`pdflatex`, so it needs a local TeX distribution
+(e.g. TeX Live or MiKTeX). You don't need TeX for day-to-day work — the résumé PDF is
+**not committed**; CI compiles and publishes the deployed copy. Run `npm run cv` only to
+preview the PDF locally (it lands at `src/assets/anish-badri-resume.pdf`, which is gitignored).
 
 ## Editing content
 
-- **Text & data:** `src/_data/resume.js` (work, projects, skills, education, highlights) and `src/_data/site.js` (name, role, contact, social, meta description). You shouldn't need to touch the templates.
-- **Project links:** in `resume.js`, each project's `url` groups links by type — `github: ["owner/repo"]`, `arxiv: ["1812.00183"]`, `other: ["https://…"]` — and the template renders each with the right logo.
-- **Résumé PDF:** the download button serves `src/assets/anish-badri-resume.pdf`; replace the file (same name) to update it.
+- **Text & data:** edit `data/resume.js` (work, projects, skills, education, highlights) and `data/site.js` (name, role, contact, social, meta description) — the single source of truth for both the site and the CV. You shouldn't need to touch the templates. A malformed edit fails the build with a field-naming error (see `data/schema.js`).
+- **Project links:** in `data/resume.js`, each project's `url` groups links by type — `github: ["owner/repo"]`, `arxiv: ["1812.00183"]`, `other: ["https://…"]` — and the template renders each with the right logo.
+- **Résumé PDF:** generated from the data above, so it can't go stale — and **not committed** (it's gitignored). CI compiles it and publishes it as the site download. Run `npm run cv` locally (needs a local TeX install) if you want to preview it. Don't hand-edit the PDF.
+- **Site-only / CV-only entries:** most data appears in both renderings. To show an entry in just one, add `siteOnly: true` (dropped from the CV) or `cvOnly: true` (dropped from the site) to that entry — works on roles, projects, focus areas, skills groups, certifications, etc.
 - **Profile photo / share image:** drop a square-ish image at `src/assets/profile.jpg`, then regenerate the OG image with `pip install Pillow && python scripts/og-image.py` (tune `FACE_Y_FRAC` / `CROP_FRAC` if the crop sits off-centre).
-- **Accent colour:** the single custom colour lives in `src/styles/base.css` (`--accent`: `#642ab3` light, `#b69eff` dark). Keep both modes above 4.5:1 contrast, and mirror the colour in `scripts/og-image.py` and `src/assets/favicon.svg`.
+- **Accent colour:** the single custom colour lives in `src/styles/base.css` (`--accent`: `#642ab3` light, `#b69eff` dark). Keep both modes above 4.5:1 contrast, and mirror the colour in `scripts/og-image.py`, `src/assets/favicon.svg` and `cv/preamble.tex`.
 
 ## Deployment
 
@@ -140,11 +165,15 @@ Deploys via **GitHub Actions**, not the classic "deploy from a branch" flow.
 
 1. Push to a repo named **`anishbadhri.github.io`**.
 2. In **Settings → Pages → Build and deployment → Source**, choose **GitHub Actions**.
-3. On every push to `main`, `deploy.yml` builds the site and publishes `_site` to `https://anishbadhri.github.io/`. No secrets needed.
+3. On every push to `main`, `deploy.yml` builds the site, compiles the CV PDF from the
+   same data, copies **only** that PDF into `_site/assets/`, runs a guard that refuses to
+   publish any stray `.tex`/`.json`, and publishes `_site` to `https://anishbadhri.github.io/`.
+   No secrets needed.
 
-The CI setup runs on Node 24 (pinned by `.nvmrc`). A separate `pr-check.yml` builds
-each pull request so a broken build can't reach `main`; pair it with a branch-protection
-rule requiring the **Build** check to keep deploys green.
+The CI setup runs on Node 24 (pinned by `.nvmrc`). Because `data/index.js` validates on
+load, a malformed data edit fails the build before anything deploys. A pull-request build
+check (running `npm run build` + `node cv/generate.js`) is recommended so a broken build
+or LaTeX generation can't reach `main`; pair it with a branch-protection rule on that check.
 
 ## Accessibility
 
