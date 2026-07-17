@@ -34,6 +34,38 @@ jobs:
       - name: Build site
         run: npm run build
 
+      # The CV is a second rendering of the SAME data as the site. Generate its
+      # LaTeX into build/ (OUTSIDE _site — the .tex must never be published),
+      # compile it to PDF, and copy ONLY the PDF over the passthrough résumé so
+      # the download always serves the freshly generated, never-stale CV.
+      - name: Generate CV LaTeX
+        run: node cv/generate.js
+
+      - name: Compile CV PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          # pdflatex, to match cv/preamble.tex (standard Latin Modern fonts).
+          root_file: build/cv/resume.tex
+          work_in_root_file_dir: true
+
+      # The résumé PDF is NOT committed — it is generated here and placed into
+      # the deploy output, which is what makes it available on the site.
+      - name: Publish generated PDF as the résumé
+        run: |
+          mkdir -p _site/assets
+          cp build/cv/resume.pdf _site/assets/anish-badri-resume.pdf
+
+      # Turn "publish only the site and the PDF" into a build that REFUSES to
+      # publish anything else: fail if any .tex/.json intermediate reached _site.
+      - name: Guard — only site assets and the PDF may be published
+        run: |
+          if find _site \( -name '*.tex' -o -name '*.json' \) | grep -q .; then
+            echo "::error::Unintended file(s) staged for publish:"
+            find _site \( -name '*.tex' -o -name '*.json' \)
+            exit 1
+          fi
+          echo "Publish guard passed: no .tex/.json under _site."
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
 

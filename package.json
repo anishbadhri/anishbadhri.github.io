@@ -7,7 +7,9 @@
   "scripts": {
     "build": "eleventy",
     "serve": "eleventy --serve",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site build",
+    "cv:tex": "node cv/generate.js",
+    "cv": "npm run cv:tex && latexmk -pdf -outdir=build/cv build/cv/resume.tex"
   },
   "engines": {
     "node": ">=24.11.0"
@@ -19,6 +21,7 @@
     "cssnano": "^8.0.0",
     "postcss": "^8.5.18",
     "postcss-import": "^16.0.0",
-    "simple-icons": "^16.26.0"
+    "simple-icons": "^16.26.0",
+    "zod": "^4.4.3"
   }
 }
