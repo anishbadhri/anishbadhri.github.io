@@ -38,9 +38,8 @@ const roleSchema = z.strictObject({
   org: z.string().min(1).optional(),
   location: z.string().min(1),
   focus: z.string().min(1).optional(),
-  start: isoMonth.optional(),
+  start: isoMonth, // required — dateLabel is derived from start/end (data/index.js)
   end: isoMonth.optional(), // omit while current
-  dateLabel: z.string().min(1),
   current: z.boolean().optional(),
   highlights: z.array(z.string().min(1)).min(1),
   stack: z.array(z.string().min(1)),
@@ -65,9 +64,8 @@ const projectUrlSchema = z.strictObject({
 
 const projectSchema = z.strictObject({
   name: z.string().min(1),
-  start: isoMonth.optional(),
+  start: isoMonth, // required — dateLabel derived
   end: isoMonth.optional(),
-  dateLabel: z.string().min(1).optional(),
   location: z.string().min(1).optional(),
   tags: z.array(z.string().min(1)),
   url: projectUrlSchema.optional(),
@@ -89,9 +87,8 @@ const educationSchema = z.strictObject({
   degree: z.string().min(1),
   area: z.string().min(1).optional(), // JSON Resume `area`
   studyType: z.string().min(1).optional(), // JSON Resume `studyType`
-  start: isoMonth.optional(),
+  start: isoMonth, // required — dateLabel derived
   end: isoMonth.optional(),
-  dateLabel: z.string().min(1),
   gpa: z.string().min(1),
 });
 

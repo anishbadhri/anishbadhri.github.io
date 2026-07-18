@@ -66,9 +66,37 @@ function featuredHighlights() {
     .map((it) => it.short || it.title || it.name);
 }
 
+// Human date labels are DERIVED from the ISO start/end so the date lives in one
+// place. Month precision for roles/projects ("Aug 2020 – Nov 2025"), year
+// precision for education ("2016 – 2020"); `current` roles read "– Present".
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const NDASH = "–"; // en dash separator
+
+const fmtMonth = (iso) => `${MONTHS[Number(iso.split("-")[1]) - 1]} ${iso.split("-")[0]}`;
+function monthLabel({ start, end, current }) {
+  if (!start) return undefined;
+  if (current) return `${fmtMonth(start)} ${NDASH} Present`;
+  return end ? `${fmtMonth(start)} ${NDASH} ${fmtMonth(end)}` : fmtMonth(start);
+}
+function yearLabel({ start, end }) {
+  const year = (iso) => iso.split("-")[0];
+  if (!start) return undefined;
+  return end ? `${year(start)} ${NDASH} ${year(end)}` : year(start);
+}
+
+// Attach the derived dateLabel to every dated entry of a (pruned) resume copy.
+function withDateLabels(r) {
+  for (const company of r.experience) {
+    for (const role of company.roles) role.dateLabel = monthLabel(role);
+  }
+  for (const p of r.projects) p.dateLabel = monthLabel(p);
+  if (r.education) r.education.dateLabel = yearLabel(r.education);
+  return r;
+}
+
 // The site ignores `cvOnly` entries; the CV ignores `siteOnly` entries.
 function forSite() {
-  const r = pruneFlagged(resume, "cvOnly");
+  const r = withDateLabels(pruneFlagged(resume, "cvOnly"));
   r.highlights = featuredHighlights(); // derived; not stored in resume.js
   return {
     resume: r,
@@ -78,7 +106,7 @@ function forSite() {
 
 function forCv() {
   return {
-    resume: pruneFlagged(resume, "siteOnly"),
+    resume: withDateLabels(pruneFlagged(resume, "siteOnly")),
     site: pruneFlagged(site, "siteOnly"),
   };
 }

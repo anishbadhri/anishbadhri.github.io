@@ -41,7 +41,6 @@ module.exports = {
           location: "Sunnyvale, CA",
           focus: "Identity Protocols (LDAP, SCIM)",
           start: "2025-12",
-          dateLabel: "Dec 2025 – Present",
           current: true,
           stack: ["Java", "TypeScript", "Cloud Spanner", "LDAP", "SCIM", "SAML", "OIDC", "Bigtable"],
           highlights: [
@@ -58,7 +57,6 @@ module.exports = {
           focus: "Customer Onboarding (Data Migration)",
           start: "2020-08",
           end: "2025-11",
-          dateLabel: "Aug 2020 – Nov 2025",
           stack: ["Java", "TypeScript", "Cloud Spanner", "Message Queues", "ETL Pipelines", "Data Migration"],
           highlights: [
             "Tech lead in the Customer Onboarding team, building multiple products to migrate data from third-party services to Google.",
@@ -77,7 +75,6 @@ module.exports = {
           location: "Chennai, India",
           start: "2019-12",
           end: "2020-01",
-          dateLabel: "Dec 2019 – Jan 2020",
           stack: ["Snowflake", "Azure Blob Storage", "Node.js", "TypeScript"],
           highlights: [
             "Automated A/B testing on data returned by production code and a new implementation.",
@@ -95,7 +92,6 @@ module.exports = {
           location: "Bengaluru, India",
           start: "2019-05",
           end: "2019-07",
-          dateLabel: "May 2019 – Jul 2019",
           stack: ["Java", "Cloud Spanner", "Message Queues"],
           highlights: [
             "Built a bridge from index pagination to token pagination for the list-users API, making time per call independent of the number of users.",
@@ -113,7 +109,6 @@ module.exports = {
           location: "Chennai, India",
           start: "2018-05",
           end: "2018-07",
-          dateLabel: "May 2018 – Jul 2018",
           stack: ["Node.js", "SDK Development"],
           highlights: [
             "Integrated Freshdesk, the flagship product of Freshworks, with third-party applications using the Freshworks SDK on Node.js.",
@@ -132,7 +127,6 @@ module.exports = {
       name: "Complyer",
       start: "2019-12",
       end: "2020-05",
-      dateLabel: "Dec 2019 – May 2020",
       location: "Chennai, India",
       tags: ["C++", "CMake", "ANTLR", "Z3", "Model Checking"],
       url: { github: ["AnandSaminathan/complyer", "AnandSaminathan/verification-algorithms", "AnandSaminathan/formula-tree"], arxiv: [], other: [] },
@@ -146,7 +140,6 @@ module.exports = {
     {
       name: "Complyer-SAT",
       start: "2020-07",
-      dateLabel: "Jul 2020",
       location: "Chennai, India",
       tags: ["C++", "CMake", "Boolean SAT"],
       url: { github: ["anishbadhri/complyer-sat"], arxiv: [], other: [] },
@@ -161,7 +154,6 @@ module.exports = {
       name: "Bounded Model Checking of MFOTL Properties",
       start: "2018-10",
       end: "2018-11",
-      dateLabel: "Oct 2018 – Nov 2018",
       location: "Chennai, India",
       tags: ["Model Checking"],
       url: { github: ["anishbadhri/MFOTLProject"], arxiv: ["1812.00183"], other: [] },
@@ -174,7 +166,6 @@ module.exports = {
     {
       name: "Graph Database Modelling of College Data",
       start: "2020-07",
-      dateLabel: "Jul 2020",
       location: "Chennai, India",
       tags: ["Node.js", "Neo4j", "GraphQL"],
       url: { github: [], arxiv: [], other: [] },
@@ -188,7 +179,6 @@ module.exports = {
       name: "Graph Recommendation Tool",
       start: "2020-04",
       end: "2020-05",
-      dateLabel: "Apr 2020 – May 2020",
       location: "Chennai, India",
       tags: ["Python"],
       url: { github: ["divyalakshmi054/chemical-graphs"], arxiv: [], other: [] },
@@ -202,7 +192,6 @@ module.exports = {
     {
       name: "Command-Line Tools for Codeforces",
       start: "2019-11",
-      dateLabel: "Nov 2019",
       location: "Chennai, India",
       tags: ["Python", "BeautifulSoup"],
       url: { github: ["anishbadhri/Codeforces-MiniProjects"], arxiv: [], other: [] },
@@ -231,7 +220,6 @@ module.exports = {
     studyType: "B.E.",
     start: "2016-07",
     end: "2020-06",
-    dateLabel: "2016 – 2020",
     gpa: "7.77 / 10.0",
   },
 
