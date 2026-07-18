@@ -38,9 +38,8 @@ const roleSchema = z.strictObject({
   org: z.string().min(1).optional(),
   location: z.string().min(1),
   focus: z.string().min(1).optional(),
-  start: isoMonth.optional(),
+  start: isoMonth, // required — dateLabel is derived from start/end (data/index.js)
   end: isoMonth.optional(), // omit while current
-  dateLabel: z.string().min(1),
   current: z.boolean().optional(),
   highlights: z.array(z.string().min(1)).min(1),
   stack: z.array(z.string().min(1)),
@@ -65,11 +64,10 @@ const projectUrlSchema = z.strictObject({
 
 const projectSchema = z.strictObject({
   name: z.string().min(1),
-  start: isoMonth.optional(),
+  start: isoMonth, // required — dateLabel derived
   end: isoMonth.optional(),
-  dateLabel: z.string().min(1).optional(),
   location: z.string().min(1).optional(),
-  tags: z.array(z.string().min(1)),
+  stack: z.array(z.string().min(1)), // technologies (unified with role `stack`)
   url: projectUrlSchema.optional(),
   desc: z.string().min(1), // compact one-liner for the site
   highlights: z.array(z.string().min(1)).optional(), // bullets for the CV
@@ -89,9 +87,8 @@ const educationSchema = z.strictObject({
   degree: z.string().min(1),
   area: z.string().min(1).optional(), // JSON Resume `area`
   studyType: z.string().min(1).optional(), // JSON Resume `studyType`
-  start: isoMonth.optional(),
+  start: isoMonth, // required — dateLabel derived
   end: isoMonth.optional(),
-  dateLabel: z.string().min(1),
   gpa: z.string().min(1),
 });
 
@@ -104,12 +101,21 @@ const certificationSchema = z.strictObject({
   ...divergence,
 });
 
-// Grouped awards / recognition (the CV renders these; the site uses `highlights`).
+// Grouped awards / recognition. The CV renders these grouped; the site's
+// "Highlights" list is DERIVED from the ones flagged `featured` (see
+// data/index.js). `featured` is a rank (1 = shown first); `short` overrides the
+// site wording when it should read differently from the CV `title`/`detail`.
+const featuredFields = {
+  featured: z.number().int().positive().optional(),
+  short: z.string().min(1).optional(),
+};
+
 const achievementItemSchema = z.strictObject({
   title: z.string().min(1),
   detail: z.string().min(1).optional(),
   issuer: z.string().min(1).optional(),
   date: z.string().min(1), // display string; may be a range like "2016 – 20"
+  ...featuredFields,
   ...divergence,
 });
 
@@ -122,6 +128,7 @@ const achievementGroupSchema = z.strictObject({
 const organizationSchema = z.strictObject({
   name: z.string().min(1),
   detail: z.string().min(1),
+  ...featuredFields, // an organization can also surface in the site Highlights
   ...divergence,
 });
 
@@ -135,7 +142,9 @@ const resumeSchema = z.strictObject({
   certifications: z.array(certificationSchema),
   achievements: z.array(achievementGroupSchema),
   organizations: z.array(organizationSchema),
-  highlights: z.array(z.string().min(1)),
+  languages: z.array(z.string().min(1)), // spoken languages
+  // `highlights` is no longer stored — it is derived in data/index.js from the
+  // `featured` achievements/organizations above.
   knowsAbout: z.array(z.string().min(1)),
 });
 

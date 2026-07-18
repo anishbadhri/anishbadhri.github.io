@@ -96,7 +96,7 @@ if (resume.projects.length) {
       ...(u.other || []).map((l) => href(l, hostname(l))),
     ]);
     // Plain text -> cventry escapes it once (don't pre-escape the tags here).
-    const stack = p.tags && p.tags.length ? `Stack: ${p.tags.join(", ")}` : "";
+    const stack = p.stack && p.stack.length ? `Stack: ${p.stack.join(", ")}` : "";
     const nameAndLinks = joinDot([esc(p.name), links]);
     // CV shows the full bullet list; falls back to the compact desc if absent.
     const body = p.highlights && p.highlights.length ? cvitems(p.highlights.map(esc)) : esc(p.desc);

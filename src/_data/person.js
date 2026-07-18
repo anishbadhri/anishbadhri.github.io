@@ -3,7 +3,7 @@
 // credentials, occupation, awards and résumé links — the structured-data
 // signals that make the profile legible to search engines and AI crawlers.
 // base.njk embeds this as the `person` node of its @graph.
-const { resume, site } = require("../../data");
+const { resume, site, featuredHighlights } = require("../../data");
 
 const abs = (p) => site.url + p;
 
@@ -39,7 +39,7 @@ module.exports = () => {
     },
     knowsAbout: resume.knowsAbout,
     // Recognition and verifiable credentials.
-    award: resume.highlights,
+    award: featuredHighlights(),
     hasCredential: resume.certifications.map((c) => ({
       "@type": "EducationalOccupationalCredential",
       name: c.name,

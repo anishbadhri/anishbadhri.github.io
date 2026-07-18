@@ -41,7 +41,6 @@ module.exports = {
           location: "Sunnyvale, CA",
           focus: "Identity Protocols (LDAP, SCIM)",
           start: "2025-12",
-          dateLabel: "Dec 2025 – Present",
           current: true,
           stack: ["Java", "TypeScript", "Cloud Spanner", "LDAP", "SCIM", "SAML", "OIDC", "Bigtable"],
           highlights: [
@@ -58,7 +57,6 @@ module.exports = {
           focus: "Customer Onboarding (Data Migration)",
           start: "2020-08",
           end: "2025-11",
-          dateLabel: "Aug 2020 – Nov 2025",
           stack: ["Java", "TypeScript", "Cloud Spanner", "Message Queues", "ETL Pipelines", "Data Migration"],
           highlights: [
             "Tech lead in the Customer Onboarding team, building multiple products to migrate data from third-party services to Google.",
@@ -77,7 +75,6 @@ module.exports = {
           location: "Chennai, India",
           start: "2019-12",
           end: "2020-01",
-          dateLabel: "Dec 2019 – Jan 2020",
           stack: ["Snowflake", "Azure Blob Storage", "Node.js", "TypeScript"],
           highlights: [
             "Automated A/B testing on data returned by production code and a new implementation.",
@@ -95,7 +92,6 @@ module.exports = {
           location: "Bengaluru, India",
           start: "2019-05",
           end: "2019-07",
-          dateLabel: "May 2019 – Jul 2019",
           stack: ["Java", "Cloud Spanner", "Message Queues"],
           highlights: [
             "Built a bridge from index pagination to token pagination for the list-users API, making time per call independent of the number of users.",
@@ -113,7 +109,6 @@ module.exports = {
           location: "Chennai, India",
           start: "2018-05",
           end: "2018-07",
-          dateLabel: "May 2018 – Jul 2018",
           stack: ["Node.js", "SDK Development"],
           highlights: [
             "Integrated Freshdesk, the flagship product of Freshworks, with third-party applications using the Freshworks SDK on Node.js.",
@@ -132,9 +127,8 @@ module.exports = {
       name: "Complyer",
       start: "2019-12",
       end: "2020-05",
-      dateLabel: "Dec 2019 – May 2020",
       location: "Chennai, India",
-      tags: ["C++", "CMake", "ANTLR", "Z3", "Model Checking"],
+      stack: ["C++", "CMake", "ANTLR", "Z3", "Model Checking"],
       url: { github: ["AnandSaminathan/complyer", "AnandSaminathan/verification-algorithms", "AnandSaminathan/formula-tree"], arxiv: [], other: [] },
       desc: "A compiler that verifies whether a model satisfies a given property — safety properties in propositional logic and temporal properties in LTL — using an SMT solver with k-induction, LTL bounded model checking and IC3.",
       highlights: [
@@ -146,9 +140,8 @@ module.exports = {
     {
       name: "Complyer-SAT",
       start: "2020-07",
-      dateLabel: "Jul 2020",
       location: "Chennai, India",
-      tags: ["C++", "CMake", "Boolean SAT"],
+      stack: ["C++", "CMake", "Boolean SAT"],
       url: { github: ["anishbadhri/complyer-sat"], arxiv: [], other: [] },
       desc: "A Boolean-satisfiability solver that decides whether a formula has a satisfying assignment. Uses Tseytin transformation to CNF and the DPLL algorithm, optimized with 2-SAT and HORNSAT.",
       highlights: [
@@ -161,9 +154,8 @@ module.exports = {
       name: "Bounded Model Checking of MFOTL Properties",
       start: "2018-10",
       end: "2018-11",
-      dateLabel: "Oct 2018 – Nov 2018",
       location: "Chennai, India",
-      tags: ["Model Checking"],
+      stack: ["Model Checking"],
       url: { github: ["anishbadhri/MFOTLProject"], arxiv: ["1812.00183"], other: [] },
       desc: "Specification and verification of infinite-state systems via Monadic First-Order sentences, whose returned bound restricts the state space and makes the verification problem decidable.",
       highlights: [
@@ -174,9 +166,8 @@ module.exports = {
     {
       name: "Graph Database Modelling of College Data",
       start: "2020-07",
-      dateLabel: "Jul 2020",
       location: "Chennai, India",
-      tags: ["Node.js", "Neo4j", "GraphQL"],
+      stack: ["Node.js", "Neo4j", "GraphQL"],
       url: { github: [], arxiv: [], other: [] },
       desc: "A scalable graph-database schema and a back-end API server for storing and querying college data across a range of use cases.",
       highlights: [
@@ -188,9 +179,8 @@ module.exports = {
       name: "Graph Recommendation Tool",
       start: "2020-04",
       end: "2020-05",
-      dateLabel: "Apr 2020 – May 2020",
       location: "Chennai, India",
-      tags: ["Python"],
+      stack: ["Python"],
       url: { github: ["divyalakshmi054/chemical-graphs"], arxiv: [], other: [] },
       desc: "A command-line tool that normalizes an input graph to best fit a template graph, comparing slope — or slope and position — with a configurable error margin and learning rate.",
       highlights: [
@@ -202,9 +192,8 @@ module.exports = {
     {
       name: "Command-Line Tools for Codeforces",
       start: "2019-11",
-      dateLabel: "Nov 2019",
       location: "Chennai, India",
-      tags: ["Python", "BeautifulSoup"],
+      stack: ["Python", "BeautifulSoup"],
       url: { github: ["anishbadhri/Codeforces-MiniProjects"], arxiv: [], other: [] },
       desc: "CLI utilities for Codeforces: problem recommendations, sample-I/O downloads, unsolved virtual-contest listings and recently solved problems.",
       highlights: [
@@ -213,14 +202,17 @@ module.exports = {
     },
   ],
 
-  // Technical skills, grouped. The final "Languages" group is spoken languages.
+  // Technical skills, grouped.
   skills: [
     { group: "Programming", items: ["C++", "Java", "TypeScript", "Python", "SQL", "Shell", "NuSMV"] },
     { group: "Concepts", items: ["Data Structures", "Algorithms", "Boolean Satisfiability", "Model Checking", "Distributed Systems"] },
     { group: "Databases", items: ["Cloud Spanner", "Neo4j", "MySQL"] },
     { group: "Tools & Frameworks", items: ["Git", "Protocol Buffers", "Docker", "Node.js", "CMake", "REST", "ANTLR", "GraphQL"] },
-    { group: "Languages", items: ["English", "Tamil"] },
   ],
+
+  // Spoken languages — their own field (not a technical skill). The views render
+  // them alongside skills; JSON Resume maps them to its `languages`.
+  languages: ["English", "Tamil"],
 
   education: {
     school: "SSN College of Engineering",
@@ -231,7 +223,6 @@ module.exports = {
     studyType: "B.E.",
     start: "2016-07",
     end: "2020-06",
-    dateLabel: "2016 – 2020",
     gpa: "7.77 / 10.0",
   },
 
@@ -244,61 +235,44 @@ module.exports = {
     { name: "Introduction to Discrete Mathematics for Computer Science", detail: "5 courses; 100% average grade", issuer: "Coursera", year: "2020", url: "https://www.coursera.org/account/accomplishments/specialization/P5NZHCRDFRR2" },
     { name: "Design and Analysis of Algorithms", detail: "Grade 81%; top 5% nationally", issuer: "NPTEL", year: "2017", url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL17CS27S1220806171019922" },
     { name: "Model Checking", detail: "Grade 84%", issuer: "NPTEL", year: "2017", url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL17CS38S1200020171011486" },
-    { name: "Programming, Data Structures & Algorithms using Python", detail: "Grade 81%", issuer: "NPTEL", year: "2017" },
   ],
 
   // Awards / recognition, grouped for the CV. `date` is a display string (some
-  // are ranges like "2016 – 20"). The site's curated recognition list is the
-  // separate `highlights` array below.
+  // are ranges like "2016 – 20"). Items flagged `featured: <rank>` are surfaced
+  // (in rank order, via `short`) in the site's lean "Highlights" section, which
+  // is DERIVED in data/index.js — there is no separate stored highlights list.
   achievements: [
     {
       group: "Professional",
       items: [
-        { title: "Leadership Bonuses", detail: "Awarded 10+ bonuses for exemplary work", issuer: "Google", date: "2020 –" },
-        { title: "Peer Bonuses", detail: "Awarded 30+ bonuses for supporting team members", issuer: "Google", date: "2020 –" },
+        { title: "Leadership & peer bonuses", detail: "10+ leadership and 30+ peer bonuses for exemplary work and team support", issuer: "Google", date: "2020 –", featured: 1, short: "10+ leadership and 30+ peer bonuses at Google" },
       ],
     },
     {
       group: "ICPC & Provincials",
       items: [
-        { title: "Amritapuri Doublesite Regionals", detail: "Ranked 61 of 324 teams (team IC3)", issuer: "ICPC", date: "2019" },
-        { title: "Gwalior–Pune Regionals", detail: "Ranked 64 of 113 teams (team IC3)", issuer: "ICPC", date: "2019" },
-        { title: "Chennai Provincials", detail: "Ranked 3rd (team IC3)", issuer: "Provincials", date: "2019" },
-        { title: "Kharagpur Regionals", detail: "Ranked 51 of 64 teams (team Code_Overload)", issuer: "ICPC", date: "2017" },
+        { title: "Amritapuri Doublesite Regionals", detail: "Ranked 61 of 324 teams (team IC3)", issuer: "ICPC", date: "2019", featured: 3, short: "ICPC 2019 Amritapuri Regionals — 61 / 324 teams (team IC3)" },
+        { title: "Chennai Provincials", detail: "Ranked 3rd (team IC3)", issuer: "Provincials", date: "2019", featured: 2, short: "3rd place — ICPC 2019 Chennai Provincials (team IC3)" },
         { title: "Chennai Provincials", detail: "Ranked 4th (team Code_Overload)", issuer: "Provincials", date: "2017" },
       ],
     },
     {
       group: "Academic",
       items: [
-        { title: "eXLog Math Quiz", detail: "1st of 200 teams in the inter-state math quiz", issuer: "SSN", date: "2018" },
-        { title: "Smart India Hackathon", detail: "Finalist (team Tandem Felix)", issuer: "SIH", date: "2018" },
-        { title: "Facebook Hacker Cup", detail: "Qualified for Round 2", issuer: "Facebook", date: "2018, 19" },
-        { title: "Google Code Jam", detail: "Qualified for Round 2", issuer: "Google", date: "2018" },
-        { title: "CodeChef SnackDown", detail: "Qualified for the Elimination Round", issuer: "CodeChef", date: "2017" },
+        { title: "eXLog Math Quiz", detail: "1st of 200 teams in the inter-state math quiz", issuer: "SSN", date: "2018", featured: 4, short: "1st of 200 teams — eXLog inter-state math quiz" },
+        { title: "Smart India Hackathon", detail: "Finalist (team Tandem Felix)", issuer: "SIH", date: "2018", featured: 5, short: "Smart India Hackathon 2018 — finalist" },
+        { title: "Online programming contests", detail: "Advanced past the opening round of Facebook Hacker Cup (2018–19), Google Code Jam (2018) and CodeChef SnackDown (2017)", date: "2017 – 19" },
         { title: "Technical Symposiums", detail: "Won multiple technical events at inter-college symposiums", date: "2016 – 20" },
-        { title: "Indian National Olympiad in Informatics", detail: "Qualified via the Zonal Informatics Olympiad", issuer: "IARCS", date: "2016" },
+        { title: "Indian National Olympiad in Informatics", detail: "Qualified via the Zonal Informatics Olympiad", issuer: "IARCS", date: "2016", featured: 6, short: "Qualified for the Indian National Olympiad in Informatics" },
       ],
     },
   ],
 
-  // Interests / involvement (CV "Organizations & Interests").
+  // Interests / involvement (CV "Organizations & Interests"). MAXFLOW is also
+  // featured into the site's Highlights.
   organizations: [
     { name: "Competitive Programming", detail: "Active problem solving on Codeforces and CodeChef." },
-    { name: "SSN Coding Community", detail: "Head of MAXFLOW, the SSN Coding Community." },
-  ],
-
-  // Curated recognition shown in the site's lean "Highlights" section (the CV
-  // uses the fuller, grouped `achievements` above instead).
-  highlights: [
-    "10+ leadership bonuses and 30+ peer bonuses at Google",
-    "ICPC 2019 Amritapuri Regionals — 61 / 324 teams (team IC3)",
-    "ICPC 2019 Gwalior–Pune Regionals — 64 / 113 teams (team IC3)",
-    "3rd place — ICPC 2019 Chennai Provincials (team IC3)",
-    "1st of 200 teams — eXLog inter-state math quiz",
-    "Smart India Hackathon 2018 — finalist",
-    "Qualified for the Indian National Olympiad in Informatics",
-    "Head of MAXFLOW, the SSN Coding Community",
+    { name: "SSN Coding Community", detail: "Head of MAXFLOW, the SSN Coding Community.", featured: 7, short: "Head of MAXFLOW, the SSN Coding Community" },
   ],
 
   // knowsAbout terms for the Person schema (helps topical SEO).
