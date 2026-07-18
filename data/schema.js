@@ -67,7 +67,7 @@ const projectSchema = z.strictObject({
   start: isoMonth, // required — dateLabel derived
   end: isoMonth.optional(),
   location: z.string().min(1).optional(),
-  tags: z.array(z.string().min(1)),
+  stack: z.array(z.string().min(1)), // technologies (unified with role `stack`)
   url: projectUrlSchema.optional(),
   desc: z.string().min(1), // compact one-liner for the site
   highlights: z.array(z.string().min(1)).optional(), // bullets for the CV
@@ -142,6 +142,7 @@ const resumeSchema = z.strictObject({
   certifications: z.array(certificationSchema),
   achievements: z.array(achievementGroupSchema),
   organizations: z.array(organizationSchema),
+  languages: z.array(z.string().min(1)), // spoken languages
   // `highlights` is no longer stored — it is derived in data/index.js from the
   // `featured` achievements/organizations above.
   knowsAbout: z.array(z.string().min(1)),

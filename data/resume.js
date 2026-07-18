@@ -128,7 +128,7 @@ module.exports = {
       start: "2019-12",
       end: "2020-05",
       location: "Chennai, India",
-      tags: ["C++", "CMake", "ANTLR", "Z3", "Model Checking"],
+      stack: ["C++", "CMake", "ANTLR", "Z3", "Model Checking"],
       url: { github: ["AnandSaminathan/complyer", "AnandSaminathan/verification-algorithms", "AnandSaminathan/formula-tree"], arxiv: [], other: [] },
       desc: "A compiler that verifies whether a model satisfies a given property — safety properties in propositional logic and temporal properties in LTL — using an SMT solver with k-induction, LTL bounded model checking and IC3.",
       highlights: [
@@ -141,7 +141,7 @@ module.exports = {
       name: "Complyer-SAT",
       start: "2020-07",
       location: "Chennai, India",
-      tags: ["C++", "CMake", "Boolean SAT"],
+      stack: ["C++", "CMake", "Boolean SAT"],
       url: { github: ["anishbadhri/complyer-sat"], arxiv: [], other: [] },
       desc: "A Boolean-satisfiability solver that decides whether a formula has a satisfying assignment. Uses Tseytin transformation to CNF and the DPLL algorithm, optimized with 2-SAT and HORNSAT.",
       highlights: [
@@ -155,7 +155,7 @@ module.exports = {
       start: "2018-10",
       end: "2018-11",
       location: "Chennai, India",
-      tags: ["Model Checking"],
+      stack: ["Model Checking"],
       url: { github: ["anishbadhri/MFOTLProject"], arxiv: ["1812.00183"], other: [] },
       desc: "Specification and verification of infinite-state systems via Monadic First-Order sentences, whose returned bound restricts the state space and makes the verification problem decidable.",
       highlights: [
@@ -167,7 +167,7 @@ module.exports = {
       name: "Graph Database Modelling of College Data",
       start: "2020-07",
       location: "Chennai, India",
-      tags: ["Node.js", "Neo4j", "GraphQL"],
+      stack: ["Node.js", "Neo4j", "GraphQL"],
       url: { github: [], arxiv: [], other: [] },
       desc: "A scalable graph-database schema and a back-end API server for storing and querying college data across a range of use cases.",
       highlights: [
@@ -180,7 +180,7 @@ module.exports = {
       start: "2020-04",
       end: "2020-05",
       location: "Chennai, India",
-      tags: ["Python"],
+      stack: ["Python"],
       url: { github: ["divyalakshmi054/chemical-graphs"], arxiv: [], other: [] },
       desc: "A command-line tool that normalizes an input graph to best fit a template graph, comparing slope — or slope and position — with a configurable error margin and learning rate.",
       highlights: [
@@ -193,7 +193,7 @@ module.exports = {
       name: "Command-Line Tools for Codeforces",
       start: "2019-11",
       location: "Chennai, India",
-      tags: ["Python", "BeautifulSoup"],
+      stack: ["Python", "BeautifulSoup"],
       url: { github: ["anishbadhri/Codeforces-MiniProjects"], arxiv: [], other: [] },
       desc: "CLI utilities for Codeforces: problem recommendations, sample-I/O downloads, unsolved virtual-contest listings and recently solved problems.",
       highlights: [
@@ -202,14 +202,17 @@ module.exports = {
     },
   ],
 
-  // Technical skills, grouped. The final "Languages" group is spoken languages.
+  // Technical skills, grouped.
   skills: [
     { group: "Programming", items: ["C++", "Java", "TypeScript", "Python", "SQL", "Shell", "NuSMV"] },
     { group: "Concepts", items: ["Data Structures", "Algorithms", "Boolean Satisfiability", "Model Checking", "Distributed Systems"] },
     { group: "Databases", items: ["Cloud Spanner", "Neo4j", "MySQL"] },
     { group: "Tools & Frameworks", items: ["Git", "Protocol Buffers", "Docker", "Node.js", "CMake", "REST", "ANTLR", "GraphQL"] },
-    { group: "Languages", items: ["English", "Tamil"] },
   ],
+
+  // Spoken languages — their own field (not a technical skill). The views render
+  // them alongside skills; JSON Resume maps them to its `languages`.
+  languages: ["English", "Tamil"],
 
   education: {
     school: "SSN College of Engineering",
@@ -232,7 +235,6 @@ module.exports = {
     { name: "Introduction to Discrete Mathematics for Computer Science", detail: "5 courses; 100% average grade", issuer: "Coursera", year: "2020", url: "https://www.coursera.org/account/accomplishments/specialization/P5NZHCRDFRR2" },
     { name: "Design and Analysis of Algorithms", detail: "Grade 81%; top 5% nationally", issuer: "NPTEL", year: "2017", url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL17CS27S1220806171019922" },
     { name: "Model Checking", detail: "Grade 84%", issuer: "NPTEL", year: "2017", url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL17CS38S1200020171011486" },
-    { name: "Programming, Data Structures & Algorithms using Python", detail: "Grade 81%", issuer: "NPTEL", year: "2017" },
   ],
 
   // Awards / recognition, grouped for the CV. `date` is a display string (some

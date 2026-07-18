@@ -29,7 +29,6 @@ function dropUndefined(obj) {
 
 function toJsonResume() {
   const [city, region] = site.location.split(",").map((s) => s.trim());
-  const spoken = resume.skills.find((g) => g.group === "Languages");
 
   return {
     $schema: "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
@@ -89,17 +88,15 @@ function toJsonResume() {
           }),
         ),
       ),
-    skills: resume.skills
-      .filter((g) => g.group !== "Languages")
-      .map((g) => ({ name: g.group, keywords: g.items })),
-    languages: (spoken ? spoken.items : []).map((l) => ({ language: l })),
+    skills: resume.skills.map((g) => ({ name: g.group, keywords: g.items })),
+    languages: resume.languages.map((l) => ({ language: l })),
     interests: resume.organizations.map((o) => ({ name: o.name, keywords: [o.detail] })),
     projects: resume.projects.map((p) =>
       dropUndefined({
         name: p.name,
         description: p.desc,
         highlights: p.highlights,
-        keywords: p.tags,
+        keywords: p.stack,
         startDate: p.start,
         endDate: p.end,
         url: primaryProjectUrl(p),

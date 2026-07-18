@@ -94,9 +94,22 @@ function withDateLabels(r) {
   return r;
 }
 
+// Spoken languages are stored in their own `languages` field but render in the
+// UI alongside the technical skills, so present them as a trailing skills group.
+function withLanguagesGroup(r) {
+  if (r.languages && r.languages.length) {
+    r.skills = [...r.skills, { group: "Languages", items: r.languages }];
+  }
+  return r;
+}
+
+// Shape a pruned resume copy for a renderer: derive dateLabels and fold spoken
+// languages back in as a skills group.
+const shape = (r) => withLanguagesGroup(withDateLabels(r));
+
 // The site ignores `cvOnly` entries; the CV ignores `siteOnly` entries.
 function forSite() {
-  const r = withDateLabels(pruneFlagged(resume, "cvOnly"));
+  const r = shape(pruneFlagged(resume, "cvOnly"));
   r.highlights = featuredHighlights(); // derived; not stored in resume.js
   return {
     resume: r,
@@ -106,7 +119,7 @@ function forSite() {
 
 function forCv() {
   return {
-    resume: withDateLabels(pruneFlagged(resume, "siteOnly")),
+    resume: shape(pruneFlagged(resume, "siteOnly")),
     site: pruneFlagged(site, "siteOnly"),
   };
 }
