@@ -248,57 +248,41 @@ module.exports = {
   ],
 
   // Awards / recognition, grouped for the CV. `date` is a display string (some
-  // are ranges like "2016 – 20"). The site's curated recognition list is the
-  // separate `highlights` array below.
+  // are ranges like "2016 – 20"). Items flagged `featured: <rank>` are surfaced
+  // (in rank order, via `short`) in the site's lean "Highlights" section, which
+  // is DERIVED in data/index.js — there is no separate stored highlights list.
   achievements: [
     {
       group: "Professional",
       items: [
-        { title: "Leadership Bonuses", detail: "Awarded 10+ bonuses for exemplary work", issuer: "Google", date: "2020 –" },
-        { title: "Peer Bonuses", detail: "Awarded 30+ bonuses for supporting team members", issuer: "Google", date: "2020 –" },
+        { title: "Leadership & peer bonuses", detail: "10+ leadership and 30+ peer bonuses for exemplary work and team support", issuer: "Google", date: "2020 –", featured: 1, short: "10+ leadership and 30+ peer bonuses at Google" },
       ],
     },
     {
       group: "ICPC & Provincials",
       items: [
-        { title: "Amritapuri Doublesite Regionals", detail: "Ranked 61 of 324 teams (team IC3)", issuer: "ICPC", date: "2019" },
-        { title: "Gwalior–Pune Regionals", detail: "Ranked 64 of 113 teams (team IC3)", issuer: "ICPC", date: "2019" },
-        { title: "Chennai Provincials", detail: "Ranked 3rd (team IC3)", issuer: "Provincials", date: "2019" },
-        { title: "Kharagpur Regionals", detail: "Ranked 51 of 64 teams (team Code_Overload)", issuer: "ICPC", date: "2017" },
+        { title: "Amritapuri Doublesite Regionals", detail: "Ranked 61 of 324 teams (team IC3)", issuer: "ICPC", date: "2019", featured: 3, short: "ICPC 2019 Amritapuri Regionals — 61 / 324 teams (team IC3)" },
+        { title: "Chennai Provincials", detail: "Ranked 3rd (team IC3)", issuer: "Provincials", date: "2019", featured: 2, short: "3rd place — ICPC 2019 Chennai Provincials (team IC3)" },
         { title: "Chennai Provincials", detail: "Ranked 4th (team Code_Overload)", issuer: "Provincials", date: "2017" },
       ],
     },
     {
       group: "Academic",
       items: [
-        { title: "eXLog Math Quiz", detail: "1st of 200 teams in the inter-state math quiz", issuer: "SSN", date: "2018" },
-        { title: "Smart India Hackathon", detail: "Finalist (team Tandem Felix)", issuer: "SIH", date: "2018" },
-        { title: "Facebook Hacker Cup", detail: "Qualified for Round 2", issuer: "Facebook", date: "2018, 19" },
-        { title: "Google Code Jam", detail: "Qualified for Round 2", issuer: "Google", date: "2018" },
-        { title: "CodeChef SnackDown", detail: "Qualified for the Elimination Round", issuer: "CodeChef", date: "2017" },
+        { title: "eXLog Math Quiz", detail: "1st of 200 teams in the inter-state math quiz", issuer: "SSN", date: "2018", featured: 4, short: "1st of 200 teams — eXLog inter-state math quiz" },
+        { title: "Smart India Hackathon", detail: "Finalist (team Tandem Felix)", issuer: "SIH", date: "2018", featured: 5, short: "Smart India Hackathon 2018 — finalist" },
+        { title: "Online programming contests", detail: "Advanced past the opening round of Facebook Hacker Cup (2018–19), Google Code Jam (2018) and CodeChef SnackDown (2017)", date: "2017 – 19" },
         { title: "Technical Symposiums", detail: "Won multiple technical events at inter-college symposiums", date: "2016 – 20" },
-        { title: "Indian National Olympiad in Informatics", detail: "Qualified via the Zonal Informatics Olympiad", issuer: "IARCS", date: "2016" },
+        { title: "Indian National Olympiad in Informatics", detail: "Qualified via the Zonal Informatics Olympiad", issuer: "IARCS", date: "2016", featured: 6, short: "Qualified for the Indian National Olympiad in Informatics" },
       ],
     },
   ],
 
-  // Interests / involvement (CV "Organizations & Interests").
+  // Interests / involvement (CV "Organizations & Interests"). MAXFLOW is also
+  // featured into the site's Highlights.
   organizations: [
     { name: "Competitive Programming", detail: "Active problem solving on Codeforces and CodeChef." },
-    { name: "SSN Coding Community", detail: "Head of MAXFLOW, the SSN Coding Community." },
-  ],
-
-  // Curated recognition shown in the site's lean "Highlights" section (the CV
-  // uses the fuller, grouped `achievements` above instead).
-  highlights: [
-    "10+ leadership bonuses and 30+ peer bonuses at Google",
-    "ICPC 2019 Amritapuri Regionals — 61 / 324 teams (team IC3)",
-    "ICPC 2019 Gwalior–Pune Regionals — 64 / 113 teams (team IC3)",
-    "3rd place — ICPC 2019 Chennai Provincials (team IC3)",
-    "1st of 200 teams — eXLog inter-state math quiz",
-    "Smart India Hackathon 2018 — finalist",
-    "Qualified for the Indian National Olympiad in Informatics",
-    "Head of MAXFLOW, the SSN Coding Community",
+    { name: "SSN Coding Community", detail: "Head of MAXFLOW, the SSN Coding Community.", featured: 7, short: "Head of MAXFLOW, the SSN Coding Community" },
   ],
 
   // knowsAbout terms for the Person schema (helps topical SEO).

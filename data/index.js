@@ -55,10 +55,23 @@ function pruneFlagged(value, excludeFlag) {
   return value;
 }
 
+// The site's "Highlights" list is DERIVED, not stored: every achievement or
+// organization entry flagged `featured: <rank>` surfaces here, ordered by rank,
+// rendered as its `short` (site wording) or its `title`. Kept here in the view
+// layer so both the site (forSite) and the JSON-LD (person.js) share one copy.
+function featuredHighlights() {
+  return [...resume.achievements.flatMap((g) => g.items), ...resume.organizations]
+    .filter((it) => typeof it.featured === "number")
+    .sort((a, b) => a.featured - b.featured)
+    .map((it) => it.short || it.title || it.name);
+}
+
 // The site ignores `cvOnly` entries; the CV ignores `siteOnly` entries.
 function forSite() {
+  const r = pruneFlagged(resume, "cvOnly");
+  r.highlights = featuredHighlights(); // derived; not stored in resume.js
   return {
-    resume: pruneFlagged(resume, "cvOnly"),
+    resume: r,
     site: pruneFlagged(site, "cvOnly"),
   };
 }
@@ -70,4 +83,4 @@ function forCv() {
   };
 }
 
-module.exports = { resume, site, forSite, forCv, resumeSchema, siteSchema };
+module.exports = { resume, site, forSite, forCv, featuredHighlights, resumeSchema, siteSchema };
