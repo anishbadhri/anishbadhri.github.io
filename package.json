@@ -16,12 +16,12 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.6",
-    "@primer/primitives": "^11.9.0",
-    "autoprefixer": "^10.5.2",
-    "cssnano": "^8.0.0",
+    "@primer/primitives": "^11.10.0",
+    "autoprefixer": "^10.5.4",
+    "cssnano": "^8.0.4",
     "postcss": "^8.5.18",
     "postcss-import": "^16.0.0",
-    "simple-icons": "^16.26.0",
+    "simple-icons": "^16.28.0",
     "zod": "^4.4.3"
   }
 }
